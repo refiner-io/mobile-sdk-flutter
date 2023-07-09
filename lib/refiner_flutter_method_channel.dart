@@ -56,9 +56,9 @@ class MethodChannelRefinerFlutter extends RefinerFlutterPlatform {
   }
 
   @override
-  Future attachToResponse(Map<String, dynamic> contextualData) {
+  Future addToResponse(Map<String, dynamic> contextualData) {
     return methodChannel.invokeMethod<String>(
-        'attachToResponse', contextualData);
+        'addToResponse', contextualData);
   }
 
   @override

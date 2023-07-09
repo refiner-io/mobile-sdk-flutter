@@ -69,8 +69,8 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
             case "showForm":
                 showForm(args.get("formUuid").toString(), (boolean) args.get("force"));
                 break;
-            case "attachToResponse":
-                attachToResponse(args);
+            case "addToResponse":
+                addToResponse(args);
                 break;
             default:
                 result.notImplemented();
@@ -139,12 +139,12 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
     }
 
 
-    public void attachToResponse(HashMap contextualData) {
+    public void addToResponse(HashMap contextualData) {
         HashMap<String, Object> contextualDataMap = null;
         if (contextualData != null) {
             contextualDataMap = contextualData;
         }
-        Refiner.INSTANCE.attachToResponse(contextualDataMap);
+        Refiner.INSTANCE.addToResponse(contextualDataMap);
     }
 
 

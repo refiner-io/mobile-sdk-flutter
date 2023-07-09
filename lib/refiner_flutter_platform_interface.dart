@@ -54,8 +54,8 @@ abstract class RefinerFlutterPlatform extends PlatformInterface {
     throw UnimplementedError('showForm() has not been implemented.');
   }
 
-  Future attachToResponse(Map<String, dynamic> contextualData) {
-    throw UnimplementedError('attachToResponse() has not been implemented.');
+  Future addToResponse(Map<String, dynamic> contextualData) {
+    throw UnimplementedError('addToResponse() has not been implemented.');
   }
 
   Future<dynamic> _callHandler(MethodCall call) {

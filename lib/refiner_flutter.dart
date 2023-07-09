@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 import 'refiner_flutter_platform_interface.dart';
 
 class Refiner {
@@ -36,8 +38,8 @@ class Refiner {
     return RefinerFlutterPlatform.instance.showForm(formUuid, force);
   }
 
-  static Future attachToResponse(Map<String, dynamic> contextualData) {
-    return RefinerFlutterPlatform.instance.attachToResponse(contextualData);
+  static Future addToResponse(Map<String, dynamic> contextualData) {
+    return RefinerFlutterPlatform.instance.addToResponse(contextualData);
   }
 
   static void addListener(String name, Function(Map value) callBackFunc) {
