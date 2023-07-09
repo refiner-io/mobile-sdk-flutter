@@ -1,16 +1,17 @@
-import 'package:flutter/foundation.dart';
 import 'refiner_flutter_platform_interface.dart';
 
 class Refiner {
-
-  static Future initialize(String projectId,
-      [bool enableDebugMode = false]) async {
+  static Future initialize(
+      {required String projectId, bool enableDebugMode = false}) async {
     return RefinerFlutterPlatform.instance
         .initialize(projectId, enableDebugMode);
   }
 
-  static Future identifyUser(String userId, Map<String, dynamic> userTraits,
-      String? locale, String? signature) {
+  static Future identifyUser(
+      {required String userId,
+      required Map<String, dynamic> userTraits,
+      String? locale,
+      String? signature}) {
     return RefinerFlutterPlatform.instance
         .identifyUser(userId, userTraits, locale, signature);
   }
@@ -31,7 +32,7 @@ class Refiner {
     return RefinerFlutterPlatform.instance.ping();
   }
 
-  static Future showForm(String formUuid, bool force) {
+  static Future showForm(String formUuid, {bool force = false}) {
     return RefinerFlutterPlatform.instance.showForm(formUuid, force);
   }
 
@@ -39,16 +40,11 @@ class Refiner {
     return RefinerFlutterPlatform.instance.attachToResponse(contextualData);
   }
 
-  static ValueNotifier<Map?> get onBeforeShow =>
-      RefinerFlutterPlatform.instance.onBeforeShow;
+  static void addListener(String name, Function(Map value) callBackFunc) {
+    RefinerFlutterPlatform.instance.addListener(name, callBackFunc);
+  }
 
-  static ValueNotifier<Map?> get onNavigation =>
-      RefinerFlutterPlatform.instance.onNavigation;
-
-  static ValueNotifier<Map?> get onShow => RefinerFlutterPlatform.instance.onShow;
-
-  static ValueNotifier<Map?> get onDismiss =>
-      RefinerFlutterPlatform.instance.onDismiss;
-
-  static ValueNotifier<Map?> get onClose => RefinerFlutterPlatform.instance.onClose;
+  static void removeListener(String name) {
+    RefinerFlutterPlatform.instance.removeListener(name);
+  }
 }

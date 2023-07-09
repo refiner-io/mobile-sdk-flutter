@@ -62,10 +62,24 @@ abstract class RefinerFlutterPlatform extends PlatformInterface {
     throw UnimplementedError('_callHandler() has not been implemented.');
   }
 
-  final ValueNotifier<Map?> onBeforeShow = ValueNotifier(null);
-  final ValueNotifier<Map?> onNavigation = ValueNotifier(null);
-  final ValueNotifier<Map?> onShow = ValueNotifier(null);
-  final ValueNotifier<Map?> onDismiss = ValueNotifier(null);
-  final ValueNotifier<Map?> onClose = ValueNotifier(null);
-  final ValueNotifier<Map?> onComplete = ValueNotifier(null);
+  //Listeners
+  final Map<String, List<Function(Map value)>> listeners = {
+    'onBeforeShow': [],
+    'onNavigation': [],
+    'onShow': [],
+    'onDismiss': [],
+    'onClose': [],
+  };
+
+  void addListener(String name, Function(Map) callBackFunc) {
+    throw UnimplementedError('addListener() has not been implemented.');
+  }
+
+  void removeListener(String name) {
+    throw UnimplementedError('removeListener() has not been implemented.');
+  }
+
+  void trigListener(String listenerName, Map value) {
+    throw UnimplementedError('trigListener() has not been implemented.');
+  }
 }

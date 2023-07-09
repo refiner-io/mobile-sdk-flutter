@@ -32,6 +32,10 @@ android {
     defaultConfig {
         minSdkVersion 21
     }
+
+    dataBinding {
+        enabled = true
+    }
 }
 dependencies {
     implementation 'io.refiner:refiner:latest.release'

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-
-import 'package:flutter/services.dart';
 import 'package:refiner_flutter/refiner_flutter.dart';
 
 void main() {
@@ -16,35 +14,10 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
-
   @override
   void initState() {
     super.initState();
-    initPlatformState();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
-    try {
-      // platformVersion =
-      //     await _refinerFlutterPlugin.getPlatformVersion() ?? 'Unknown platform version';
-      Refiner.initialize("projectId");
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    // setState(() {
-    //   _platformVersion = platformVersion;
-    // });
+    initRefiner();
   }
 
   @override
@@ -52,12 +25,54 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('Refiner Flutter Example'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: ElevatedButton(
+            onPressed: () async {
+              await Refiner.showForm("616fc500-5d32-11ea-8fd5-f140dbcb9780",
+                  force: true);
+            },
+            child: const Text("Show Form"),
+          ),
         ),
       ),
     );
+  }
+
+  Future<void> initRefiner() async {
+    //enableDebugMode : true for testing
+    await Refiner.initialize(
+        projectId: "56421950-5d32-11ea-9bb4-9f1f1a987a49",
+        enableDebugMode: true);
+
+    var userTraits = {
+      "email": 'hello@hello.com',
+      "a_number": 123,
+      "a_date": '2022-16-04 12:00:00'
+    };
+
+    await Refiner.identifyUser(userId: "my-user-id", userTraits: userTraits);
+
+    Refiner.addListener("onBeforeShow", (value) {
+      print("***onBeforeShow***");
+      // print(value);
+    });
+    Refiner.addListener("onNavigation", (value) {
+      print("***onNavigation***");
+      // print(value);
+    });
+    Refiner.addListener("onShow", (value) {
+      print("***onShow***");
+      // print(value);
+    });
+    Refiner.addListener("onClose", (value) {
+      print("***onClose***");
+      // print(value);
+    });
+    Refiner.addListener("onDismiss", (value) {
+      print("***onDismiss***");
+      // print(value);
+    });
   }
 }

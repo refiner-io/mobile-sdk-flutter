@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:developer';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
@@ -64,36 +61,26 @@ class MethodChannelRefinerFlutter extends RefinerFlutterPlatform {
         'attachToResponse', contextualData);
   }
 
-  Future<dynamic> _callHandler(MethodCall call) async {
-    log("***_callHandler***");
-    log(call.method);
-    log(jsonEncode(call.arguments as Map));
+  @override
+  void addListener(String name, Function(Map) callBackFunc) {
+    if (listeners.containsKey(name)) listeners[name]!.add(callBackFunc);
+  }
 
-    switch (call.method) {
-      case 'onBeforeShow':
-        onBeforeShow.value = call.arguments;
-        onBeforeShow.notifyListeners();
-        break;
-      case 'onNavigation':
-        onNavigation.value = call.arguments;
-        onNavigation.notifyListeners();
-        break;
-      case 'onShow':
-        onShow.value = call.arguments;
-        onShow.notifyListeners();
-        break;
-      case 'onDismiss':
-        onDismiss.value = call.arguments;
-        onDismiss.notifyListeners();
-        break;
-      case 'onClose':
-        onClose.value = call.arguments;
-        onClose.notifyListeners();
-        break;
-      case 'onComplete':
-        onComplete.value = call.arguments;
-        onComplete.notifyListeners();
-        break;
+  @override
+  void removeListener(String name) {
+    if (listeners.containsKey(name)) listeners[name]!.clear();
+  }
+
+  @override
+  void trigListener(String listenerName, Map value) {
+    if (listeners.containsKey(listenerName)) {
+      for (var func in listeners[listenerName]!) {
+        func(value);
+      }
     }
+  }
+
+  Future<dynamic> _callHandler(MethodCall call) async {
+    trigListener(call.method, call.arguments);
   }
 }
