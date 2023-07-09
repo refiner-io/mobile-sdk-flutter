@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-
 import 'refiner_flutter_platform_interface.dart';
 
 class Refiner {

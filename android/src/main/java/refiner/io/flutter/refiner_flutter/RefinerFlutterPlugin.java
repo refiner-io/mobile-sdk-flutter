@@ -21,14 +21,8 @@ import kotlin.Unit;
 import kotlinx.serialization.json.Json;
 import kotlinx.serialization.json.JsonObject;
 
-/**
- * RefinerFlutterPlugin
- */
 public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
-    /// The MethodChannel that will the communication between Flutter and native Android
-    ///
-    /// This local reference serves to register the plugin with the Flutter Engine and unregister it
-    /// when the Flutter Engine is detached from the Activity
+
     private MethodChannel channel;
     private Context context;
 
@@ -45,9 +39,6 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
         HashMap<String, Object> args = (HashMap<String, Object>) call.arguments;
 
         switch (call.method) {
-            case "test":
-                result.success("test return success");
-                break;
             case "initialize":
                 initialize(args.get("projectId").toString(), (boolean) args.get("enableDebugMode"));
                 break;

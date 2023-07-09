@@ -1,25 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
-
 import 'refiner_flutter_method_channel.dart';
 
 abstract class RefinerFlutterPlatform extends PlatformInterface {
-  /// Constructs a RefinerFlutterPlatform.
+
   RefinerFlutterPlatform() : super(token: _token);
 
   static final Object _token = Object();
 
   static RefinerFlutterPlatform _instance = MethodChannelRefinerFlutter();
 
-  /// The default instance of [RefinerFlutterPlatform] to use.
-  ///
-  /// Defaults to [MethodChannelRefinerFlutter].
   static RefinerFlutterPlatform get instance => _instance;
 
-  /// Platform-specific implementations should set this with their own
-  /// platform-specific class that extends [RefinerFlutterPlatform] when
-  /// they register themselves.
   static set instance(RefinerFlutterPlatform instance) {
     PlatformInterface.verifyToken(instance, _token);
     _instance = instance;

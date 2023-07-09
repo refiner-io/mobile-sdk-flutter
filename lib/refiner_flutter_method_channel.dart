@@ -1,11 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-
 import 'refiner_flutter_platform_interface.dart';
 
-/// An implementation of [RefinerFlutterPlatform] that uses method channels.
 class MethodChannelRefinerFlutter extends RefinerFlutterPlatform {
-  /// The method channel used to interact with the native platform.
+
   @visibleForTesting
   final methodChannel = const MethodChannel('refiner_flutter');
 
@@ -57,8 +55,7 @@ class MethodChannelRefinerFlutter extends RefinerFlutterPlatform {
 
   @override
   Future addToResponse(Map<String, dynamic> contextualData) {
-    return methodChannel.invokeMethod<String>(
-        'addToResponse', contextualData);
+    return methodChannel.invokeMethod<String>('addToResponse', contextualData);
   }
 
   @override
