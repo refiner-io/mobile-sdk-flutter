@@ -52,8 +52,8 @@ android {
             signingConfig signingConfigs.debug
         }
     }
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding = true
     }
 }
 

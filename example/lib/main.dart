@@ -47,32 +47,37 @@ class _MyAppState extends State<MyApp> {
         enableDebugMode: true);
 
     var userTraits = {
-      "email": 'hello@hello.com',
-      "a_number": 123,
-      "a_date": '2022-16-04 12:00:00'
+      'email': 'hello@hello.com',
+      'a_number': 123,
+      'a_date': '2022-16-04 12:00:00'
     };
 
     await Refiner.identifyUser(userId: "my-user-id", userTraits: userTraits);
 
+    await Refiner.trackEvent("eventName");
+    await Refiner.trackScreen("screenName");
+
+    await Refiner.addToResponse({"testKey":"testValue"});
+
     Refiner.addListener("onBeforeShow", (value) {
       print("***onBeforeShow***");
-      // print(value);
+      print(value);
     });
     Refiner.addListener("onNavigation", (value) {
       print("***onNavigation***");
-      // print(value);
+      print(value);
     });
     Refiner.addListener("onShow", (value) {
       print("***onShow***");
-      // print(value);
+      print(value);
     });
     Refiner.addListener("onClose", (value) {
       print("***onClose***");
-      // print(value);
+      print(value);
     });
     Refiner.addListener("onDismiss", (value) {
       print("***onDismiss***");
-      // print(value);
+      print(value);
     });
   }
 }
