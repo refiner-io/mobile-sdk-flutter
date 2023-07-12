@@ -37,13 +37,12 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
         result("success")
     }
     
-    public func initialize(projectId:String,  enableDebugMode:Bool) {
+    public func initialize(projectId:String, enableDebugMode:Bool) {
         Refiner.instance.initialize(projectId: projectId, enableDebugMode: enableDebugMode)
         registerCallbacks()
     }
     
-    public func identifyUser(userId:String,  userTraits:[String : NSObject]?,  locale:String?,  signature:String?)  {
-        
+    public func identifyUser(userId:String, userTraits:[String : NSObject]?, locale:String?, signature:String?)  {
         do{
             try Refiner.instance.identifyUser(userId: userId,userTraits: userTraits,locale: signature ,signature: signature)
         } catch {
