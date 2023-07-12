@@ -138,16 +138,6 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
         Refiner.INSTANCE.addToResponse(contextualDataMap);
     }
 
-
-    public void addListener(String eventName) {
-        // Keep: Required for RN built in Event Emitter Calls.
-    }
-
-
-    public void removeListeners(Integer count) {
-        // Keep: Required for RN built in Event Emitter Calls.
-    }
-
     private void registerCallbacks() {
         Refiner.INSTANCE.onBeforeShow((formId, formConfig) -> {
             String config = Json.Default.encodeToString(JsonObject.Companion.serializer(), (JsonObject) formConfig);

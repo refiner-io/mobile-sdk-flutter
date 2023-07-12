@@ -18,7 +18,7 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
         case "initialize":
             self.initialize(projectId: args["projectId"] as! String, enableDebugMode: args["enableDebugMode"] as! Bool)
         case "identifyUser":
-            self.identifyUser(userId: args["userId"] as! String, userTraits: args["userTraits"] as! [String : NSObject]?, locale: args["locale"], signature: args["signature"])
+            self.identifyUser(userId: args["userId"] as! String, userTraits: args["userTraits"] as! [String : NSObject]?, locale: args["locale"] as? String, signature: args["signature"] as? String)
         case "resetUser":
             self.resetUser()
         case "trackEvent":
@@ -42,20 +42,11 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
         registerCallbacks()
     }
     
-    public func identifyUser(userId:String,  userTraits:[String : NSObject]?,  locale:NSObject?,  signature:NSObject?)  {
+    public func identifyUser(userId:String,  userTraits:[String : NSObject]?,  locale:String?,  signature:String?)  {
         
         do{
-            var _locale:String?=nil
-            var _signature:String?=nil
-            if(!(locale is NSNull)) {
-                _locale=locale as! String?
-            }
-            if(!(signature is NSNull)) {
-                _signature=signature as! String?
-            }
-            try Refiner.instance.identifyUser(userId: userId,userTraits: userTraits,locale: _locale,signature: _signature)
+            try Refiner.instance.identifyUser(userId: userId,userTraits: userTraits,locale: signature ,signature: signature)
         } catch {
-            self.channel?.invokeMethod("identifyUser error", arguments: nil)
         }
     }
     public func resetUser() {
@@ -74,10 +65,8 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
     public func showForm(formUuid:String, force:Bool) {
         Refiner.instance.showForm(uuid: formUuid, force: force)
     }
-    public func addToResponse(contextualData:[String : Any]?) {
-        if (contextualData != nil) {
-            Refiner.instance.addToResponse(data: contextualData!)
-        }
+    public func addToResponse(contextualData:[String : Any]) {
+        Refiner.instance.addToResponse(data: contextualData)
     }
     private func registerCallbacks() {
         Refiner.instance.onBeforeShow = { formId, formConfig in

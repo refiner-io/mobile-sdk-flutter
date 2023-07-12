@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'refiner_flutter_platform_interface.dart';
 
 class MethodChannelRefinerFlutter extends RefinerFlutterPlatform {
-
   @visibleForTesting
   final methodChannel = const MethodChannel('refiner_flutter');
 
@@ -55,7 +54,7 @@ class MethodChannelRefinerFlutter extends RefinerFlutterPlatform {
 
   @override
   Future addToResponse(Map<String, dynamic>? contextualData) {
-    return methodChannel.invokeMethod<String>('addToResponse', contextualData??{});
+    return methodChannel.invokeMethod<String>('addToResponse', contextualData ?? {});
   }
 
   @override
