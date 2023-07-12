@@ -36,7 +36,7 @@ class Refiner {
     return RefinerFlutterPlatform.instance.showForm(formUuid, force);
   }
 
-  static Future addToResponse(Map<String, dynamic> contextualData) {
+  static Future addToResponse(Map<String, dynamic>? contextualData) {
     return RefinerFlutterPlatform.instance.addToResponse(contextualData);
   }
 

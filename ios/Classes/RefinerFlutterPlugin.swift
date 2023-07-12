@@ -77,7 +77,6 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
     public func addToResponse(contextualData:[String : Any]?) {
         if (contextualData != nil) {
             Refiner.instance.addToResponse(data: contextualData!)
-            //Refiner.instance.addToResponse(data: ["contextualData":"asdsads"])
         }
     }
     private func registerCallbacks() {

@@ -57,7 +57,7 @@ class _MyAppState extends State<MyApp> {
     await Refiner.trackEvent("eventName");
     await Refiner.trackScreen("screenName");
 
-    await Refiner.addToResponse({"testKey":"testValue"});
+    await Refiner.addToResponse({"testKey": "testValue"});
 
     Refiner.addListener("onBeforeShow", (value) {
       print("***onBeforeShow***");
@@ -77,6 +77,10 @@ class _MyAppState extends State<MyApp> {
     });
     Refiner.addListener("onDismiss", (value) {
       print("***onDismiss***");
+      print(value);
+    });
+    Refiner.addListener("onComplete", (value) {
+      print("***onComplete***");
       print(value);
     });
   }
