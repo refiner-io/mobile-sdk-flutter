@@ -9,14 +9,14 @@ class MethodChannelRefinerFlutter extends RefinerFlutterPlatform {
   @override
   Future initialize(String projectId, [bool enableDebugMode = false]) async {
     methodChannel.setMethodCallHandler(_callHandler);
-    return methodChannel.invokeMethod<String>('initialize',
+    return methodChannel.invokeMethod('initialize',
         {'projectId': projectId, 'enableDebugMode': enableDebugMode});
   }
 
   @override
   Future identifyUser(String userId, Map<String, dynamic> userTraits,
       String? locale, String? signature) {
-    return methodChannel.invokeMethod<String>('identifyUser', {
+    return methodChannel.invokeMethod('identifyUser', {
       'userId': userId,
       'userTraits': userTraits,
       'locale': locale,
@@ -26,13 +26,13 @@ class MethodChannelRefinerFlutter extends RefinerFlutterPlatform {
 
   @override
   Future resetUser() {
-    return methodChannel.invokeMethod<String>('resetUser');
+    return methodChannel.invokeMethod('resetUser');
   }
 
   @override
   Future trackEvent(String eventName) {
     return methodChannel
-        .invokeMethod<String>('trackEvent', {'eventName': eventName});
+        .invokeMethod('trackEvent', {'eventName': eventName});
   }
 
   @override
@@ -43,18 +43,18 @@ class MethodChannelRefinerFlutter extends RefinerFlutterPlatform {
 
   @override
   Future ping() {
-    return methodChannel.invokeMethod<String>('ping');
+    return methodChannel.invokeMethod('ping');
   }
 
   @override
   Future showForm(String formUuid, bool force) {
-    return methodChannel.invokeMethod<String>(
+    return methodChannel.invokeMethod(
         'showForm', {'formUuid': formUuid, 'force': force});
   }
 
   @override
   Future addToResponse(Map<String, dynamic>? contextualData) {
-    return methodChannel.invokeMethod<String>('addToResponse', contextualData ?? {});
+    return methodChannel.invokeMethod('addToResponse', contextualData ?? {});
   }
 
   @override
