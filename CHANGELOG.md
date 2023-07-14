@@ -1,3 +1,3 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+* Official Flutter wrapper for the Refiner.io Mobile SDK

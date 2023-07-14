@@ -1,4 +1,3 @@
-import 'package:flutter/services.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'refiner_flutter_method_channel.dart';
 
@@ -48,10 +47,6 @@ abstract class RefinerFlutterPlatform extends PlatformInterface {
 
   Future addToResponse(Map<String, dynamic>? contextualData) {
     throw UnimplementedError('addToResponse() has not been implemented.');
-  }
-
-  Future<dynamic> _callHandler(MethodCall call) {
-    throw UnimplementedError('_callHandler() has not been implemented.');
   }
 
   //Listeners

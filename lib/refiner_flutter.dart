@@ -1,4 +1,4 @@
-import 'refiner_flutter_platform_interface.dart';
+import 'src/refiner_flutter_platform_interface.dart';
 
 class Refiner {
   static Future initialize(

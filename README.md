@@ -8,10 +8,7 @@
 
 ```yaml
 dependencies:
-  refiner_flutter:
-    git:
-      url: https://github.com/refiner-io/mobile-sdk-flutter
-      ref: develop
+  refiner_flutter: ^0.0.2
 ```
 
 #### Android

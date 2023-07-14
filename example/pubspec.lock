@@ -134,9 +134,10 @@ packages:
   refiner_flutter:
     dependency: "direct main"
     description:
-      path: ".."
-      relative: true
-    source: path
+      name: refiner_flutter
+      sha256: "353fe3de7e92f57f5763980b156ce5926b258417974590a892e38ca8d49743df"
+      url: "https://pub.dev"
+    source: hosted
     version: "0.0.1"
   sky_engine:
     dependency: transitive
