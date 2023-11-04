@@ -6,9 +6,11 @@
 
 - To use this plugin, add refiner_flutter as a dependency in your pubspec.yaml file.
 
+  ![Pub Version (including pre-releases)](https://img.shields.io/pub/v/refiner_flutter)
+
 ```yaml
 dependencies:
-  refiner_flutter: ^0.0.2
+  refiner_flutter: ^[version]
 ```
 
 #### Android
