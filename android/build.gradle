@@ -38,5 +38,5 @@ android {
     }
 }
 dependencies {
-    implementation 'io.refiner:refiner:latest.release'
+    implementation 'io.refiner:refiner:1.2.2'
 }

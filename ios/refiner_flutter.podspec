@@ -9,9 +9,9 @@ Pod::Spec.new do |s|
   s.description      = <<-DESC
 Official Flutter wrapper for the Refiner.io Mobile SDK
                        DESC
-  s.homepage         = 'http://example.com'
+  s.homepage         = 'https://refiner.io'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Your Company' => 'email@example.com' }
+  s.author           = { 'Refiner' => 'contact@refiner.io' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
