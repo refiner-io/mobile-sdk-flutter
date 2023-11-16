@@ -13,28 +13,36 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
     }
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-        let args = call.arguments as! [String : NSObject]
-        switch call.method {
-        case "initialize":
-            self.initialize(projectId: args["projectId"] as! String, enableDebugMode: args["enableDebugMode"] as! Bool)
-        case "identifyUser":
-            self.identifyUser(userId: args["userId"] as! String, userTraits: args["userTraits"] as! [String : NSObject]?, locale: args["locale"] as? String, signature: args["signature"] as? String)
-        case "resetUser":
-            self.resetUser()
-        case "trackEvent":
-            self.trackEvent(eventName: args["eventName"] as! String)
-        case "trackScreen":
-            self.trackScreen(screenName: args["screenName"] as! String)
-        case "ping":
-            self.ping()
-        case "showForm":
-            self.showForm(formUuid: args["formUuid"] as! String, force: args["force"] as! Bool)
-        case "addToResponse":
-            self.addToResponse(contextualData: args)
-        default:
-            result(FlutterMethodNotImplemented)
+        if let args = call.arguments as? [String : NSObject]{
+            switch call.method {
+            case "initialize":
+                self.initialize(projectId: args["projectId"] as! String, enableDebugMode: args["enableDebugMode"] as! Bool)
+            case "identifyUser":
+                self.identifyUser(userId: args["userId"] as! String, userTraits: args["userTraits"] as! [String : NSObject]?, locale: args["locale"] as? String, signature: args["signature"] as? String)
+            case "trackEvent":
+                self.trackEvent(eventName: args["eventName"] as! String)
+            case "trackScreen":
+                self.trackScreen(screenName: args["screenName"] as! String)
+                
+            case "showForm":
+                self.showForm(formUuid: args["formUuid"] as! String, force: args["force"] as! Bool)
+            case "addToResponse":
+                self.addToResponse(contextualData: args)
+            default:
+                result(FlutterMethodNotImplemented)
+            }
+            result("success")
+            
+        } else {
+            switch call.method {
+            case "resetUser":
+                self.resetUser()
+            case "ping":
+                self.ping()
+            default:
+                result(FlutterMethodNotImplemented)
+            }
         }
-        result("success")
     }
     
     public func initialize(projectId:String, enableDebugMode:Bool) {

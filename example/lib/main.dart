@@ -54,6 +54,8 @@ class _MyAppState extends State<MyApp> {
 
     await Refiner.identifyUser(userId: "my-user-id", userTraits: userTraits);
 
+    await Refiner.ping();
+
     await Refiner.trackEvent("eventName");
     await Refiner.trackScreen("screenName");
 
