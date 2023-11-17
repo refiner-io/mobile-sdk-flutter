@@ -9,7 +9,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  refiner_flutter: ^0.0.3
+  refiner_flutter:
+    path: ../
 
   cupertino_icons: ^1.0.2
 

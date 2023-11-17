@@ -15,7 +15,7 @@ Official Flutter wrapper for the Refiner.io Mobile SDK
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
-  s.dependency 'RefinerSDK'
+  s.dependency 'RefinerSDK', "~> 1.2.2"
   s.platform = :ios, '9.0'
 
   # Flutter.framework does not contain a i386 slice.
