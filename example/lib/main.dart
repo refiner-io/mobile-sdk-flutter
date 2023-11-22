@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:refiner_flutter/refiner_flutter.dart';
@@ -27,14 +29,39 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Refiner Flutter Example'),
         ),
-        body: Center(
-          child: ElevatedButton(
-            onPressed: () async {
-              await Refiner.showForm("4792f1e0-b6e8-11ed-84cf-d1abc91dbc3d",
-                  force: true);
-            },
-            child: const Text("Show Form"),
-          ),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () async {
+                var userTraits = {
+                  'email': 'hello@hello.com',
+                  'a_number': 123,
+                  'a_date': '2022-16-04 12:00:00',
+                };
+                await Refiner.identifyUser(
+                    userId: '${Random().nextInt(9999999)}--${Random().nextInt(9999999)}',
+                    userTraits: userTraits,
+                    locale: 'de');
+                // locale: 'fr'
+              },
+              child: const Text("Identify User"),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                await Refiner.resetUser();
+              },
+              child: const Text("Reset User"),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                await Refiner.showForm("e67598a0-cc8d-11ed-a913-47c5ab4910b7",
+                    force: true);
+              },
+              child: const Text("Show Form"),
+            ),
+          ],
         ),
       ),
     );
@@ -45,14 +72,6 @@ class _MyAppState extends State<MyApp> {
     await Refiner.initialize(
         projectId: "a95a2e00-afb7-11ea-92d4-fd03275706ee",
         enableDebugMode: true);
-
-    var userTraits = {
-      'email': 'hello@hello.com',
-      'a_number': 123,
-      'a_date': '2022-16-04 12:00:00'
-    };
-
-    await Refiner.identifyUser(userId: "my-user-id", userTraits: userTraits);
 
     await Refiner.ping();
 

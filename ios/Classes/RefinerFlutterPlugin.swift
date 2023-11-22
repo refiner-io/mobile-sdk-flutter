@@ -52,7 +52,7 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
     
     public func identifyUser(userId:String, userTraits:[String : NSObject]?, locale:String?, signature:String?)  {
         do{
-            try Refiner.instance.identifyUser(userId: userId,userTraits: userTraits,locale: signature ,signature: signature)
+            try Refiner.instance.identifyUser(userId: userId,userTraits: userTraits,locale: locale ,signature: signature)
         } catch {
         }
     }

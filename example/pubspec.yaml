@@ -3,14 +3,14 @@ description: Demonstrates how to use the refiner_flutter plugin.
 publish_to: 'none'
 
 environment:
-  sdk: '>=2.19.6 <3.0.0'
+  sdk: '>=2.19.6 <4.0.0'
+
 
 dependencies:
   flutter:
     sdk: flutter
 
-  refiner_flutter:
-    path: ../
+  refiner_flutter: 0.0.5
 
   cupertino_icons: ^1.0.2
 
