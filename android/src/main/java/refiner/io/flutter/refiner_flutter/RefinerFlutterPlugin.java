@@ -16,7 +16,6 @@ import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.refiner.Refiner;
-import io.refiner.RefinerConfigs;
 import kotlin.Unit;
 import kotlinx.serialization.json.Json;
 import kotlinx.serialization.json.JsonObject;
@@ -43,9 +42,9 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
                 initialize(args.get("projectId").toString(), (boolean) args.get("debugMode"));
                 success(result);
                 break;
-//            case "setProject":
-//                setProject(args.get("projectId").toString());
-//                break;
+            case "setProject":
+                setProject(args.get("projectId").toString());
+                break;
             case "identifyUser":
                 identifyUser(args.get("userId").toString(), (HashMap) args.get("userTraits"), (String) args.get("locale"), (String) args.get("signature"));
                 success(result);
@@ -70,12 +69,12 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
                 showForm(args.get("formUuid").toString(), (boolean) args.get("force"));
                 success(result);
                 break;
-//            case "dismissForm":
-//                dismissForm(args.get("formUuid").toString());
-//                break;
-//            case "closeForm":
-//                closeForm(args.get("formUuid").toString());
-//                break;
+            case "dismissForm":
+                dismissForm(args.get("formUuid").toString());
+                break;
+            case "closeForm":
+                closeForm(args.get("formUuid").toString());
+                break;
             case "addToResponse":
                 addToResponse(args);
                 success(result);
@@ -86,7 +85,8 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
         }
 
     }
-    private void success(Result result){
+
+    private void success(Result result) {
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
@@ -107,12 +107,11 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
         }
     }
 
-//    public void setProject(String projectId) {
-//        if (projectId != null) {
-//            Refiner.INSTANCE.setProject(projectId);
-//        }
-//    }
-
+    public void setProject(String projectId) {
+        if (projectId != null) {
+            Refiner.INSTANCE.setProject(projectId);
+        }
+    }
 
     public void identifyUser(String userId, HashMap userTraits, String locale, String signature) {
         LinkedHashMap<String, Object> userTraitsMap = new LinkedHashMap<>();
@@ -155,17 +154,17 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
         }
     }
 
-//    public void dismissForm(String formUuid) {
-//        if (formUuid != null) {
-//            Refiner.INSTANCE.dismissForm(formUuid);
-//        }
-//    }
-//
-//    public void closeForm(String formUuid) {
-//        if (formUuid != null) {
-//            Refiner.INSTANCE.closeForm(formUuid);
-//        }
-//    }
+    public void dismissForm(String formUuid) {
+        if (formUuid != null) {
+            Refiner.INSTANCE.dismissForm(formUuid);
+        }
+    }
+
+    public void closeForm(String formUuid) {
+        if (formUuid != null) {
+            Refiner.INSTANCE.closeForm(formUuid);
+        }
+    }
 
     public void addToResponse(HashMap contextualData) {
         HashMap<String, Object> contextualDataMap = null;
