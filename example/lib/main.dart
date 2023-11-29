@@ -71,7 +71,10 @@ class _MyAppState extends State<MyApp> {
     //enableDebugMode : true for testing
     await Refiner.initialize(
         projectId: "a95a2e00-afb7-11ea-92d4-fd03275706ee",
-        enableDebugMode: true);
+        debugMode: true);
+
+    await Refiner.setProject(
+        projectId: "a95a2e00-afb7-11ea-92d4-fd03275706ee");
 
     await Refiner.ping();
 

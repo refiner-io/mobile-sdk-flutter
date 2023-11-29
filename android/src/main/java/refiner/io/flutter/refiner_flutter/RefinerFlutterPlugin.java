@@ -40,33 +40,53 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
 
         switch (call.method) {
             case "initialize":
-                initialize(args.get("projectId").toString(), (boolean) args.get("enableDebugMode"));
+                initialize(args.get("projectId").toString(), (boolean) args.get("debugMode"));
+                success(result);
                 break;
+//            case "setProject":
+//                setProject(args.get("projectId").toString());
+//                break;
             case "identifyUser":
                 identifyUser(args.get("userId").toString(), (HashMap) args.get("userTraits"), (String) args.get("locale"), (String) args.get("signature"));
+                success(result);
                 break;
             case "resetUser":
                 resetUser();
+                success(result);
                 break;
             case "trackEvent":
                 trackEvent(args.get("eventName").toString());
+                success(result);
                 break;
             case "trackScreen":
                 trackScreen(args.get("screenName").toString());
+                success(result);
                 break;
             case "ping":
                 ping();
+                success(result);
                 break;
             case "showForm":
                 showForm(args.get("formUuid").toString(), (boolean) args.get("force"));
+                success(result);
                 break;
+//            case "dismissForm":
+//                dismissForm(args.get("formUuid").toString());
+//                break;
+//            case "closeForm":
+//                closeForm(args.get("formUuid").toString());
+//                break;
             case "addToResponse":
                 addToResponse(args);
+                success(result);
                 break;
             default:
                 result.notImplemented();
                 break;
         }
+
+    }
+    private void success(Result result){
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
@@ -80,12 +100,18 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
         channel.setMethodCallHandler(null);
     }
 
-    public void initialize(String projectId, Boolean enableDebugMode) {
+    public void initialize(String projectId, Boolean debugMode) {
         if (projectId != null) {
-            Refiner.INSTANCE.initialize(context, new RefinerConfigs(projectId, enableDebugMode));
+            Refiner.INSTANCE.initialize(context, projectId, debugMode);
             registerCallbacks();
         }
     }
+
+//    public void setProject(String projectId) {
+//        if (projectId != null) {
+//            Refiner.INSTANCE.setProject(projectId);
+//        }
+//    }
 
 
     public void identifyUser(String userId, HashMap userTraits, String locale, String signature) {
@@ -129,6 +155,17 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
         }
     }
 
+//    public void dismissForm(String formUuid) {
+//        if (formUuid != null) {
+//            Refiner.INSTANCE.dismissForm(formUuid);
+//        }
+//    }
+//
+//    public void closeForm(String formUuid) {
+//        if (formUuid != null) {
+//            Refiner.INSTANCE.closeForm(formUuid);
+//        }
+//    }
 
     public void addToResponse(HashMap contextualData) {
         HashMap<String, Object> contextualDataMap = null;
