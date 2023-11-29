@@ -34,7 +34,6 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
 
     @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
-        System.out.println(call.method);
         HashMap<String, Object> args = (HashMap<String, Object>) call.arguments;
 
         switch (call.method) {
@@ -71,9 +70,11 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
                 break;
             case "dismissForm":
                 dismissForm(args.get("formUuid").toString());
+                success(result);
                 break;
             case "closeForm":
                 closeForm(args.get("formUuid").toString());
+                success(result);
                 break;
             case "addToResponse":
                 addToResponse(args);
@@ -83,7 +84,6 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
                 result.notImplemented();
                 break;
         }
-
     }
 
     private void success(Result result) {
