@@ -16,7 +16,9 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
         if let args = call.arguments as? [String : NSObject]{
             switch call.method {
             case "initialize":
-                self.initialize(projectId: args["projectId"] as! String, enableDebugMode: args["enableDebugMode"] as! Bool)
+                self.initialize(projectId: args["projectId"] as! String, debugMode: args["debugMode"] as! Bool)
+            case "setProject":
+                self.setProject(projectId: args["projectId"] as! String)
             case "identifyUser":
                 self.identifyUser(userId: args["userId"] as! String, userTraits: args["userTraits"] as! [String : NSObject]?, locale: args["locale"] as? String, signature: args["signature"] as? String)
             case "trackEvent":
@@ -26,6 +28,10 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
                 
             case "showForm":
                 self.showForm(formUuid: args["formUuid"] as! String, force: args["force"] as! Bool)
+            case "dismissForm":
+                self.dismissForm(formUuid: args["formUuid"] as! String)
+            case "closeForm":
+                self.closeForm(formUuid: args["formUuid"] as! String)
             case "addToResponse":
                 self.addToResponse(contextualData: args)
             default:
@@ -45,9 +51,15 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
         }
     }
     
-    public func initialize(projectId:String, enableDebugMode:Bool) {
-        Refiner.instance.initialize(projectId: projectId, enableDebugMode: enableDebugMode)
+    public func initialize(projectId:String, debugMode:Bool) {
+        Refiner.instance.initialize(projectId: projectId, debugMode: debugMode)
         registerCallbacks()
+    }
+    
+    public func setProject(projectId:String) {
+        print("setProject:")
+        print(projectId)
+        Refiner.instance.setProject(with: projectId)
     }
     
     public func identifyUser(userId:String, userTraits:[String : NSObject]?, locale:String?, signature:String?)  {
@@ -71,6 +83,12 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
     
     public func showForm(formUuid:String, force:Bool) {
         Refiner.instance.showForm(uuid: formUuid, force: force)
+    }
+    public func dismissForm(formUuid:String) {
+        Refiner.instance.dismissForm(uuid: formUuid)
+    }
+    public func closeForm(formUuid:String) {
+        Refiner.instance.closeForm(uuid: formUuid)
     }
     public func addToResponse(contextualData:[String : Any]) {
         Refiner.instance.addToResponse(data: contextualData)

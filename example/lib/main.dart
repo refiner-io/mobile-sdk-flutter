@@ -41,9 +41,13 @@ class _MyAppState extends State<MyApp> {
                   'a_date': '2022-16-04 12:00:00',
                 };
                 await Refiner.identifyUser(
-                    userId: '${Random().nextInt(9999999)}--${Random().nextInt(9999999)}',
+                    // userId: '${Random().nextInt(9999999)}--${Random().nextInt(9999999)}',
+                    userId: '111',
                     userTraits: userTraits,
                     locale: 'de');
+                // Future.delayed(Duration(seconds: 2),() async {
+                //  await Refiner.dismissForm('e67598a0-cc8d-11ed-a913-47c5ab4910b7');
+                // });
                 // locale: 'fr'
               },
               child: const Text("Identify User"),
@@ -58,6 +62,9 @@ class _MyAppState extends State<MyApp> {
               onPressed: () async {
                 await Refiner.showForm("e67598a0-cc8d-11ed-a913-47c5ab4910b7",
                     force: true);
+                Future.delayed(Duration(seconds: 4),() async {
+                  await Refiner.dismissForm('e67598a0-cc8d-11ed-a913-47c5ab4910b7');
+                });
               },
               child: const Text("Show Form"),
             ),
@@ -71,7 +78,10 @@ class _MyAppState extends State<MyApp> {
     //enableDebugMode : true for testing
     await Refiner.initialize(
         projectId: "a95a2e00-afb7-11ea-92d4-fd03275706ee",
-        enableDebugMode: true);
+        debugMode: true);
+
+    await Refiner.setProject(
+        projectId: "a95a2e00-afb7-11ea-92d4-fd03275706ee");
 
     await Refiner.ping();
 

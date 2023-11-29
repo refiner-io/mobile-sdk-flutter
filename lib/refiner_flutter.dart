@@ -2,9 +2,13 @@ import 'src/refiner_flutter_platform_interface.dart';
 
 class Refiner {
   static Future initialize(
-      {required String projectId, bool enableDebugMode = false}) async {
+      {required String projectId, bool debugMode = false}) async {
     return RefinerFlutterPlatform.instance
-        .initialize(projectId, enableDebugMode);
+        .initialize(projectId, debugMode);
+  }
+
+  static Future setProject({required String projectId}) async {
+    return RefinerFlutterPlatform.instance.setProject(projectId);
   }
 
   static Future identifyUser(
@@ -34,6 +38,14 @@ class Refiner {
 
   static Future showForm(String formUuid, {bool force = false}) {
     return RefinerFlutterPlatform.instance.showForm(formUuid, force);
+  }
+
+  static Future dismissForm(String formUuid) {
+    return RefinerFlutterPlatform.instance.dismissForm(formUuid);
+  }
+
+  static Future closeForm(String formUuid) {
+    return RefinerFlutterPlatform.instance.closeForm(formUuid);
   }
 
   static Future addToResponse(Map<String, dynamic>? contextualData) {

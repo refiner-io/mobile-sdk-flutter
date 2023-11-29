@@ -7,10 +7,16 @@ class MethodChannelRefinerFlutter extends RefinerFlutterPlatform {
   final methodChannel = const MethodChannel('refiner_flutter');
 
   @override
-  Future initialize(String projectId, [bool enableDebugMode = false]) async {
+  Future initialize(String projectId, [bool debugMode = false]) async {
     methodChannel.setMethodCallHandler(_callHandler);
     return methodChannel.invokeMethod('initialize',
-        {'projectId': projectId, 'enableDebugMode': enableDebugMode});
+        {'projectId': projectId, 'debugMode': debugMode});
+  }
+
+  @override
+  Future setProject(String projectId) async {
+    methodChannel.setMethodCallHandler(_callHandler);
+    return methodChannel.invokeMethod('setProject', {'projectId': projectId});
   }
 
   @override
@@ -31,8 +37,7 @@ class MethodChannelRefinerFlutter extends RefinerFlutterPlatform {
 
   @override
   Future trackEvent(String eventName) {
-    return methodChannel
-        .invokeMethod('trackEvent', {'eventName': eventName});
+    return methodChannel.invokeMethod('trackEvent', {'eventName': eventName});
   }
 
   @override
@@ -48,8 +53,18 @@ class MethodChannelRefinerFlutter extends RefinerFlutterPlatform {
 
   @override
   Future showForm(String formUuid, bool force) {
-    return methodChannel.invokeMethod(
-        'showForm', {'formUuid': formUuid, 'force': force});
+    return methodChannel
+        .invokeMethod('showForm', {'formUuid': formUuid, 'force': force});
+  }
+
+  @override
+  Future dismissForm(String formUuid) {
+    return methodChannel.invokeMethod('dismissForm', {'formUuid': formUuid});
+  }
+
+  @override
+  Future closeForm(String formUuid) {
+    return methodChannel.invokeMethod('closeForm', {'formUuid': formUuid});
   }
 
   @override

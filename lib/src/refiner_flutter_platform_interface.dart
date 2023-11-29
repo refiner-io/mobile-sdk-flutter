@@ -2,7 +2,6 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'refiner_flutter_method_channel.dart';
 
 abstract class RefinerFlutterPlatform extends PlatformInterface {
-
   RefinerFlutterPlatform() : super(token: _token);
 
   static final Object _token = Object();
@@ -16,8 +15,12 @@ abstract class RefinerFlutterPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future initialize(String projectId, [bool enableDebugMode = false]) {
+  Future initialize(String projectId, [bool debugMode = false]) {
     throw UnimplementedError('initialize() has not been implemented.');
+  }
+
+  Future setProject(String projectId) {
+    throw UnimplementedError('setProject() has not been implemented.');
   }
 
   Future identifyUser(String userId, Map<String, dynamic> userTraits,
@@ -43,6 +46,14 @@ abstract class RefinerFlutterPlatform extends PlatformInterface {
 
   Future showForm(String formUuid, bool force) {
     throw UnimplementedError('showForm() has not been implemented.');
+  }
+
+  Future dismissForm(String formUuid) {
+    throw UnimplementedError('dismissForm() has not been implemented.');
+  }
+
+  Future closeForm(String formUuid) {
+    throw UnimplementedError('closeForm() has not been implemented.');
   }
 
   Future addToResponse(Map<String, dynamic>? contextualData) {
