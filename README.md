@@ -44,7 +44,7 @@ log all interactions with the Refiner backend servers.
 ```dart
 import 'package:refiner_flutter/refiner_flutter.dart';
 
-await Refiner.initialize(projectId: 'a95a2e00-afb7-11ea-92d4-fd03275706ee', enableDebugMode: false);
+await Refiner.initialize(projectId: 'PROJECT_ID', debugMode: false);
 ```
 
 #### Identify User
@@ -157,6 +157,28 @@ calling this method when the user logs out from your app.
 
 ```dart
 await Refiner.resetUser();
+```
+
+#### Set Project
+
+Change the environment UUID during runtime, after the SDK has been initialised.
+
+```dart
+await Refiner.setProject('PROJECT_ID');
+```
+
+#### Close Surveys
+
+Close a survey programmatically without sending any information to the backend API with the `closeForm` method.
+
+```dart
+await Refiner.closeForm('FORM_UUID');
+```
+
+Close a survey programmatically and send a "dismissed at" timestamp to the backend server with the `dismissForm` method.
+
+```dart
+await Refiner.dismissForm('FORM_UUID');
 ```
 
 #### Register callback functions
