@@ -41,14 +41,9 @@ class _MyAppState extends State<MyApp> {
                   'a_date': '2022-16-04 12:00:00',
                 };
                 await Refiner.identifyUser(
-                    // userId: '${Random().nextInt(9999999)}--${Random().nextInt(9999999)}',
                     userId: '111',
                     userTraits: userTraits,
                     locale: 'de');
-                // Future.delayed(Duration(seconds: 2),() async {
-                //  await Refiner.dismissForm('e67598a0-cc8d-11ed-a913-47c5ab4910b7');
-                // });
-                // locale: 'fr'
               },
               child: const Text("Identify User"),
             ),
@@ -62,7 +57,8 @@ class _MyAppState extends State<MyApp> {
               onPressed: () async {
                 await Refiner.showForm("e67598a0-cc8d-11ed-a913-47c5ab4910b7",
                     force: true);
-                Future.delayed(Duration(seconds: 4),() async {
+                Future.delayed(Duration(seconds: 5),() async {
+
                   await Refiner.dismissForm('e67598a0-cc8d-11ed-a913-47c5ab4910b7');
                 });
               },

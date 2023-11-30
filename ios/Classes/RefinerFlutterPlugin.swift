@@ -57,8 +57,6 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
     }
     
     public func setProject(projectId:String) {
-        print("setProject:")
-        print(projectId)
         Refiner.instance.setProject(with: projectId)
     }
     
