@@ -57,10 +57,6 @@ class _MyAppState extends State<MyApp> {
               onPressed: () async {
                 await Refiner.showForm("e67598a0-cc8d-11ed-a913-47c5ab4910b7",
                     force: true);
-                Future.delayed(Duration(seconds: 5),() async {
-
-                  await Refiner.dismissForm('e67598a0-cc8d-11ed-a913-47c5ab4910b7');
-                });
               },
               child: const Text("Show Form"),
             ),
