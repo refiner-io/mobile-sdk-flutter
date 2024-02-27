@@ -13,18 +13,6 @@ dependencies:
   refiner_flutter: ^[version]
 ```
 
-#### Android
-
-- Add the configuration below in your app/build.gradle file.
-
-```kotlin
-android {
-    buildFeatures {
-        dataBinding = true
-    }
-}
-```
-
 #### iOS
 
 - Run command `pod install` in your ios directory

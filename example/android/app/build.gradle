@@ -54,9 +54,6 @@ android {
             signingConfig signingConfigs.debug
         }
     }
-    buildFeatures {
-        dataBinding = true
-    }
 }
 
 flutter {
