@@ -62,7 +62,7 @@ translated sureys. You can set the value to `null` if you are not using any lang
 features.
 
 The fourth parameter is an
-optional [Identity Verification](https://refiner.io/docs/kb/mobile-sdk/identify-verification-for-mobile-sdks/)
+optional [Identity Verification](https://refiner.io/docs/kb/settings/identity-verification/)
 signature. We recommend to use a Identify Verification signature for increased security in a
 production environment. For development purposes, you can set this value to `null`.
 
