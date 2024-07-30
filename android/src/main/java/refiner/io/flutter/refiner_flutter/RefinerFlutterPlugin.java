@@ -174,6 +174,10 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
         Refiner.INSTANCE.addToResponse(contextualDataMap);
     }
 
+    public void startSession() {
+        Refiner.INSTANCE.startSession();
+    }
+
     private void registerCallbacks() {
         Refiner.INSTANCE.onBeforeShow((formId, formConfig) -> {
             String config = Json.Default.encodeToString(JsonObject.Companion.serializer(), (JsonObject) formConfig);

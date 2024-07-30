@@ -45,6 +45,8 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
                 self.resetUser()
             case "ping":
                 self.ping()
+            case "startSession":
+                self.startSession()
             default:
                 result(FlutterMethodNotImplemented)
             }
@@ -90,6 +92,9 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
     }
     public func addToResponse(contextualData:[String : Any]) {
         Refiner.instance.addToResponse(data: contextualData)
+    }
+    public func startSession() {
+        Refiner.instance.startSession()
     }
     private func registerCallbacks() {
         Refiner.instance.onBeforeShow = { formId, formConfig in
