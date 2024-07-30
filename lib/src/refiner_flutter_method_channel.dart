@@ -73,6 +73,11 @@ class MethodChannelRefinerFlutter extends RefinerFlutterPlatform {
   }
 
   @override
+  Future startSession() {
+    return methodChannel.invokeMethod('startSession');
+  }
+
+  @override
   void addListener(String name, Function(Map) callBackFunc) {
     if (listeners.containsKey(name)) listeners[name]!.add(callBackFunc);
   }
