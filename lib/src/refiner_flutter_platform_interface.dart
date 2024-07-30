@@ -60,6 +60,10 @@ abstract class RefinerFlutterPlatform extends PlatformInterface {
     throw UnimplementedError('addToResponse() has not been implemented.');
   }
 
+  Future startSession() {
+    throw UnimplementedError('startSession() has not been implemented.');
+  }
+
   //Listeners
   final Map<String, List<Function(Map value)>> listeners = {
     'onBeforeShow': [],

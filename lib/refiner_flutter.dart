@@ -52,6 +52,10 @@ class Refiner {
     return RefinerFlutterPlatform.instance.addToResponse(contextualData);
   }
 
+  static Future startSession() {
+    return RefinerFlutterPlatform.instance.startSession();
+  }
+
   static void addListener(String name, Function(Map value) callBackFunc) {
     RefinerFlutterPlatform.instance.addListener(name, callBackFunc);
   }
