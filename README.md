@@ -1,8 +1,6 @@
-# Refiner Mobile SDK integration
+# Refiner Flutter SDK
 
-## Flutter
-
-### 1) Installation
+## 1) Installation
 
 - To use this plugin, add refiner_flutter as a dependency in your pubspec.yaml file.
 
@@ -13,16 +11,16 @@ dependencies:
   refiner_flutter: ^[version]
 ```
 
-#### iOS
+### iOS
 
 - Run command `pod install` in your ios directory
 
-### 2) Usage
+## 2) Usage
 
 Visit our [documentation](https://refiner.io/docs/kb/mobile-sdk/mobile-sdk-reference/) for more
 information about how to use the SDK methods.
 
-#### Initialization & Configuration
+### Initialization & Configuration
 
 Initialize the SDK in your application with the needed configuration parameters.
 
@@ -35,7 +33,7 @@ import 'package:refiner_flutter/refiner_flutter.dart';
 await Refiner.initialize(projectId: 'PROJECT_ID', debugMode: false);
 ```
 
-#### Identify User
+### Identify User
 
 Call `Identify User` to create or update user traits in Refiner.
 
@@ -76,7 +74,7 @@ var userTraits = {
 awaitRefiner.identifyUser(userId: 'my-user-id',userTraits: userTraits,locale: 'LOCALE',signature: 'SIGNATURE');
 ```
 
-#### Track Event
+### Track Event
 
 `Track Event` lets you track user events. Tracked events can be used to create user segments and
 target audiences in Refiner.
@@ -85,7 +83,7 @@ target audiences in Refiner.
 await Refiner.trackEvent('EVENT_NAME');
 ```
 
-#### Track Screen
+### Track Screen
 
 `Track Screen` lets you to track screen that user is currently on. Screen information can be used to
 launch surveys in specific areas of your app.
@@ -97,7 +95,7 @@ systematically track all screens of your app.
 await Refiner.trackScreen('SCREEN_NAME');
 ```
 
-#### Ping
+### Ping
 
 Depending on your setup, you might want to initiate regular checks for surveys that are scheduled
 for the current user. For example when you are using time based trigger events, or when a target
@@ -111,7 +109,7 @@ action.
 await Refiner.ping();
 ```
 
-#### Show Form
+### Show Form
 
 If you use the Manual Trigger Event for your survey, you need to call `Show Form` whenever you want
 to launch the survey.
@@ -128,7 +126,7 @@ helpful when testing the SDK. In production, the parameter should be set to `fal
 await Refiner.showForm('FORM_UUID', force: true);
 ```
 
-#### Attach Contextual Data
+### Attach Contextual Data
 
 Attach contextual data to the survey submissions with `addToResponse`. Set `null` to remove the
 contextual data.
@@ -146,7 +144,7 @@ A new user session is automatically detected when a user returns to your applica
 await Refiner.startSession();
 ```
 
-#### Reset User
+### Reset User
 
 Call `Reset User` to reset the user identifier previously set through `Identify User`. We recommend
 calling this method when the user logs out from your app.
@@ -155,7 +153,7 @@ calling this method when the user logs out from your app.
 await Refiner.resetUser();
 ```
 
-#### Set Project
+### Set Project
 
 Change the environment UUID during runtime, after the SDK has been initialised.
 
@@ -163,7 +161,7 @@ Change the environment UUID during runtime, after the SDK has been initialised.
 await Refiner.setProject('PROJECT_ID');
 ```
 
-#### Close Surveys
+### Close Surveys
 
 Close a survey programmatically without sending any information to the backend API with the `closeForm` method.
 
@@ -177,7 +175,7 @@ Close a survey programmatically and send a "dismissed at" timestamp to the backe
 await Refiner.dismissForm('FORM_UUID');
 ```
 
-#### Register callback functions
+### Register callback functions
 
 Registering callback functions allows you to execute any code at specific moments in the lifecycle
 of a survey. A popular use-case for callback functions is to redirect a user to a new screen once
