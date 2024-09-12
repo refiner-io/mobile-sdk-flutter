@@ -20,6 +20,15 @@ class Refiner {
         .identifyUser(userId, userTraits, locale, signature);
   }
 
+  static Future setUser(
+      {required String userId,
+      required Map<String, dynamic> userTraits,
+      String? locale,
+      String? signature}) {
+    return RefinerFlutterPlatform.instance
+        .setUser(userId, userTraits, locale, signature);
+  }
+
   static Future resetUser() {
     return RefinerFlutterPlatform.instance.resetUser();
   }

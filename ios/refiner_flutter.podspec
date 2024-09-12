@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'refiner_flutter'
-  s.version          = '1.5.0'
+  s.version          = '1.5.1'
   s.summary          = 'Official Flutter wrapper for the Refiner.io Mobile SDK'
   s.description      = <<-DESC
 Official Flutter wrapper for the Refiner.io Mobile SDK
