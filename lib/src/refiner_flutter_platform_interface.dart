@@ -28,6 +28,11 @@ abstract class RefinerFlutterPlatform extends PlatformInterface {
     throw UnimplementedError('identifyUser() has not been implemented.');
   }
 
+  Future setUser(String userId, Map<String, dynamic> userTraits,
+      String? locale, String? signature) {
+    throw UnimplementedError('setUser() has not been implemented.');
+  }
+
   Future resetUser() {
     throw UnimplementedError('resetUser() has not been implemented.');
   }

@@ -31,6 +31,17 @@ class MethodChannelRefinerFlutter extends RefinerFlutterPlatform {
   }
 
   @override
+  Future setUser(String userId, Map<String, dynamic> userTraits,
+      String? locale, String? signature) {
+    return methodChannel.invokeMethod('setUser', {
+      'userId': userId,
+      'userTraits': userTraits,
+      'locale': locale,
+      'signature': signature
+    });
+  }
+
+  @override
   Future resetUser() {
     return methodChannel.invokeMethod('resetUser');
   }
