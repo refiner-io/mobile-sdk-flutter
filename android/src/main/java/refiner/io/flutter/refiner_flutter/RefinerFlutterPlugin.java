@@ -48,6 +48,10 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
                 identifyUser(args.get("userId").toString(), (HashMap) args.get("userTraits"), (String) args.get("locale"), (String) args.get("signature"));
                 success(result);
                 break;
+            case "setUser":
+                setUser(args.get("userId").toString(), (HashMap) args.get("userTraits"), (String) args.get("locale"), (String) args.get("signature"));
+                success(result);
+                break;
             case "resetUser":
                 resetUser();
                 success(result);
@@ -78,6 +82,10 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
                 break;
             case "addToResponse":
                 addToResponse(args);
+                success(result);
+                break;
+            case "startSession":
+                startSession();
                 success(result);
                 break;
             default:
@@ -123,6 +131,15 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
         }
     }
 
+    public void setUser(String userId, HashMap userTraits, String locale, String signature) {
+        LinkedHashMap<String, Object> userTraitsMap = new LinkedHashMap<>();
+        for (Object e : userTraits.keySet()) {
+            userTraitsMap.put(e.toString(), userTraits.get(e.toString()));
+        }
+        if (userId != null) {
+            Refiner.INSTANCE.setUser(userId, userTraitsMap, locale, signature);
+        }
+    }
 
     public void resetUser() {
         Refiner.INSTANCE.resetUser();

@@ -21,6 +21,8 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
                 self.setProject(projectId: args["projectId"] as! String)
             case "identifyUser":
                 self.identifyUser(userId: args["userId"] as! String, userTraits: args["userTraits"] as! [String : NSObject]?, locale: args["locale"] as? String, signature: args["signature"] as? String)
+            case "setUser":
+                self.setUser(userId: args["userId"] as! String, userTraits: args["userTraits"] as! [String : NSObject]?, locale: args["locale"] as? String, signature: args["signature"] as? String)
             case "trackEvent":
                 self.trackEvent(eventName: args["eventName"] as! String)
             case "trackScreen":
@@ -65,6 +67,13 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
     public func identifyUser(userId:String, userTraits:[String : NSObject]?, locale:String?, signature:String?)  {
         do{
             try Refiner.instance.identifyUser(userId: userId,userTraits: userTraits,locale: locale ,signature: signature)
+        } catch {
+        }
+    }
+    
+    public func setUser(userId:String, userTraits:[String : NSObject]?, locale:String?, signature:String?)  {
+        do{
+            try Refiner.instance.setUser(userId: userId,userTraits: userTraits,locale: locale ,signature: signature)
         } catch {
         }
     }
