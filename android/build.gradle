@@ -23,7 +23,7 @@ apply plugin: 'com.android.library'
 
 android {
     namespace "refiner.io.flutter.refiner_flutter"
-    compileSdk 34
+    compileSdk 35
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -35,5 +35,5 @@ android {
     }
 }
 dependencies {
-    implementation 'io.refiner:refiner:1.5.1'
+    implementation 'io.refiner:refiner:1.5.4'
 }
