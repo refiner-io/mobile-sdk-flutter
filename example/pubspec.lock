@@ -151,10 +151,10 @@ packages:
     dependency: "direct main"
     description:
       name: refiner_flutter
-      sha256: "7916f00f907fbe068e5968e32a820672a03f171448506643612e7fe79ab5ce7f"
+      sha256: "750566078e42b7590ba1a17fc188650cab8ecfed0713638806b9404118611cc8"
       url: "https://pub.dev"
     source: hosted
-    version: "1.6.0"
+    version: "1.6.2"
   sky_engine:
     dependency: transitive
     description: flutter
