@@ -4,10 +4,10 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'refiner_flutter'
-  s.version          = '1.6.2'
-  s.summary          = 'Official Flutter wrapper for the Refiner.io Mobile SDK'
+  s.version          = '1.6.3'
+  s.summary          = 'Official Flutter wrapper for the Refiner Mobile SDK'
   s.description      = <<-DESC
-Official Flutter wrapper for the Refiner.io Mobile SDK
+Official Flutter wrapper for the Refiner Mobile SDK
                        DESC
   s.homepage         = 'https://refiner.io'
   s.license          = { :file => '../LICENSE' }
@@ -15,7 +15,7 @@ Official Flutter wrapper for the Refiner.io Mobile SDK
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
-  s.dependency 'RefinerSDK', "~> 1.5.5"
+  s.dependency 'RefinerSDK', "~> 1.5.6"
   s.platform = :ios, '12.0'
 
   # Flutter.framework does not contain a i386 slice.

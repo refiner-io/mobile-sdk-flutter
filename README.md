@@ -263,3 +263,12 @@ Refiner.addListener('onComplete', (args) {
     print(value);
 });   
 ```
+
+`onError` gets called when an error occurred.
+
+```dart
+Refiner.addListener('onError', (args) {
+    print('onError');
+    print(value);
+});   
+```

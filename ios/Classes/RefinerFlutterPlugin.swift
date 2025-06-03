@@ -130,6 +130,10 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
             let args:[String : Any?]=["formId":formId,"formElement":formElement,"progress":progress]
             self.sendEvent(eventName: "onNavigation", params:args)
         }
+        Refiner.instance.onError = { message in
+            let args:[String : Any?]=["message":message]
+            self.sendEvent(eventName: "onError", params:args)
+        }
     }
     private func sendEvent(eventName:String, params:[String : Any?]?) {
         self.channel?.invokeMethod(eventName, arguments: params)

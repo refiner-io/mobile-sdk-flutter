@@ -77,6 +77,7 @@ abstract class RefinerFlutterPlatform extends PlatformInterface {
     'onDismiss': [],
     'onClose': [],
     'onComplete': [],
+    'onError': []
   };
 
   void addListener(String name, Function(Map) callBackFunc) {
