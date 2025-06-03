@@ -251,6 +251,14 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
             return null;
 
         });
+
+        Refiner.INSTANCE.onError((message) -> {
+            HashMap map = new HashMap();
+            map.put("message", message);
+            sendEvent("onError", map);
+            return null;
+
+        });
     }
 
     private void sendEvent(String eventName, HashMap params) {
