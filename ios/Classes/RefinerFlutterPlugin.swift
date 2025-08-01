@@ -20,7 +20,7 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
             case "setProject":
                 self.setProject(projectId: args["projectId"] as! String)
             case "identifyUser":
-                self.identifyUser(userId: args["userId"] as! String, userTraits: args["userTraits"] as! [String : NSObject]?, locale: args["locale"] as? String, signature: args["signature"] as? String)
+                self.identifyUser(userId: args["userId"] as! String, userTraits: args["userTraits"] as! [String : NSObject]?, locale: args["locale"] as? String, signature: args["signature"] as? String, writeOperation: args["writeOperation"] as? String)
             case "setUser":
                 self.setUser(userId: args["userId"] as! String, userTraits: args["userTraits"] as! [String : NSObject]?, locale: args["locale"] as? String, signature: args["signature"] as? String)
             case "trackEvent":
@@ -64,9 +64,9 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
         Refiner.instance.setProject(with: projectId)
     }
     
-    public func identifyUser(userId:String, userTraits:[String : NSObject]?, locale:String?, signature:String?)  {
+    public func identifyUser(userId:String, userTraits:[String : NSObject]?, locale:String?, signature:String?, writeOperation:String?)  {
         do{
-            try Refiner.instance.identifyUser(userId: userId,userTraits: userTraits,locale: locale ,signature: signature)
+            try Refiner.instance.identifyUser(userId: userId,userTraits: userTraits,locale: locale ,signature: signature, writeOperation: writeOperation)
         } catch {
         }
     }
