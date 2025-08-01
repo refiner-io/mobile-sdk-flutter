@@ -45,7 +45,7 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
                 setProject(args.get("projectId").toString());
                 break;
             case "identifyUser":
-                identifyUser(args.get("userId").toString(), (HashMap) args.get("userTraits"), (String) args.get("locale"), (String) args.get("signature"));
+                identifyUser(args.get("userId").toString(), (HashMap) args.get("userTraits"), (String) args.get("locale"), (String) args.get("signature"), (String) args.get("writeOperation"));
                 success(result);
                 break;
             case "setUser":
@@ -121,13 +121,15 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
         }
     }
 
-    public void identifyUser(String userId, HashMap userTraits, String locale, String signature) {
+    public void identifyUser(String userId, HashMap userTraits, String locale, String signature, String writeOperation) {
         LinkedHashMap<String, Object> userTraitsMap = new LinkedHashMap<>();
         for (Object e : userTraits.keySet()) {
             userTraitsMap.put(e.toString(), userTraits.get(e.toString()));
         }
         if (userId != null) {
-            Refiner.INSTANCE.identifyUser(userId, userTraitsMap, locale, signature);
+            Refiner.INSTANCE.identifyUser(userId, userTraitsMap, locale, signature,
+                    writeOperation == null ? Refiner.WriteOperation.APPEND :
+                            Refiner.WriteOperation.valueOf(writeOperation));
         }
     }
 

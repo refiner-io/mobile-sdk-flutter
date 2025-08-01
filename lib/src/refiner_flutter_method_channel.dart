@@ -21,12 +21,13 @@ class MethodChannelRefinerFlutter extends RefinerFlutterPlatform {
 
   @override
   Future identifyUser(String userId, Map<String, dynamic> userTraits,
-      String? locale, String? signature) {
+      String? locale, String? signature, String? writeOperation) {
     return methodChannel.invokeMethod('identifyUser', {
       'userId': userId,
       'userTraits': userTraits,
       'locale': locale,
-      'signature': signature
+      'signature': signature,
+      'writeOperation': writeOperation
     });
   }
 
