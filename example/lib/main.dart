@@ -55,7 +55,7 @@ class _MyAppState extends State<MyApp> {
             ),
             ElevatedButton(
               onPressed: () async {
-                await Refiner.showForm("e67598a0-cc8d-11ed-a913-47c5ab4910b7",
+                await Refiner.showForm("616fc500-5d32-11ea-8fd5-f140dbcb9780",
                     force: true);
               },
               child: const Text("Show Form"),
@@ -69,11 +69,8 @@ class _MyAppState extends State<MyApp> {
   Future<void> initRefiner() async {
     //enableDebugMode : true for testing
     await Refiner.initialize(
-        projectId: "a95a2e00-afb7-11ea-92d4-fd03275706ee",
+        projectId: "56421950-5d32-11ea-9bb4-9f1f1a987a49",
         debugMode: true);
-
-    await Refiner.setProject(
-        projectId: "a95a2e00-afb7-11ea-92d4-fd03275706ee");
 
     await Refiner.ping();
 

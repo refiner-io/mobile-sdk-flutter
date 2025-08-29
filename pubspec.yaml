@@ -1,6 +1,6 @@
 name: refiner_flutter
 description: Official Flutter wrapper for the Refiner Mobile SDK
-version: 1.6.5
+version: 1.6.6
 homepage: https://github.com/refiner-io/mobile-sdk-flutter
 repository: https://github.com/refiner-io/mobile-sdk-flutter
 issue_tracker: https://github.com/refiner-io/mobile-sdk-flutter/issues
