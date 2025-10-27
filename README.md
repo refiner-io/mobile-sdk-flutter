@@ -182,7 +182,7 @@ Call `Reset User` to reset the user identifier previously set through `Identify 
 calling this method when the user logs out from your app.
 
 ```dart
-await Refiner.resetUser();
+Refiner.resetUser();
 ```
 
 ### Set Project

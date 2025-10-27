@@ -48,8 +48,8 @@ class _MyAppState extends State<MyApp> {
               child: const Text("Identify User"),
             ),
             ElevatedButton(
-              onPressed: () async {
-                await Refiner.resetUser();
+              onPressed: () {
+                 Refiner.resetUser();
               },
               child: const Text("Reset User"),
             ),
