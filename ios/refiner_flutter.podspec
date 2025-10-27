@@ -2,9 +2,14 @@
 # To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html.
 # Run `pod lib lint refiner_flutter.podspec` to validate before publishing.
 #
+require 'yaml'
+
+pubspec_path = File.join(File.dirname(__FILE__), '..', 'pubspec.yaml')
+pubspec = YAML.load_file(pubspec_path)
+
 Pod::Spec.new do |s|
   s.name             = 'refiner_flutter'
-  s.version          = '1.6.6'
+  s.version          = pubspec['version']
   s.summary          = 'Official Flutter wrapper for the Refiner Mobile SDK'
   s.description      = <<-DESC
 Official Flutter wrapper for the Refiner Mobile SDK
