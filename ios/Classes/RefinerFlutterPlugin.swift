@@ -20,9 +20,9 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
             case "setProject":
                 self.setProject(projectId: args["projectId"] as! String)
             case "identifyUser":
-                self.identifyUser(userId: args["userId"] as! String, userTraits: args["userTraits"] as! [String : NSObject]?, locale: args["locale"] as? String, signature: args["signature"] as? String, writeOperation: args["writeOperation"] as? String)
+                self.identifyUser(userId: args["userId"] as? String, userTraits: args["userTraits"] as! [String : NSObject]?, locale: args["locale"] as? String, signature: args["signature"] as? String, writeOperation: args["writeOperation"] as? String)
             case "setUser":
-                self.setUser(userId: args["userId"] as! String, userTraits: args["userTraits"] as! [String : NSObject]?, locale: args["locale"] as? String, signature: args["signature"] as? String)
+                self.setUser(userId: args["userId"] as? String, userTraits: args["userTraits"] as! [String : NSObject]?, locale: args["locale"] as? String, signature: args["signature"] as? String)
             case "trackEvent":
                 self.trackEvent(eventName: args["eventName"] as! String)
             case "trackScreen":
@@ -36,6 +36,10 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
                 self.closeForm(formUuid: args["formUuid"] as! String)
             case "addToResponse":
                 self.addToResponse(contextualData: args)
+            case "setLocale":
+                self.setLocale(locale: args["locale"] as! String)
+            case "setAnonymousId":
+                self.setAnonymousId(anonymousId: args["anonymousId"] as! String)
             default:
                 result(FlutterMethodNotImplemented)
             }
@@ -64,14 +68,14 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
         Refiner.instance.setProject(with: projectId)
     }
     
-    public func identifyUser(userId:String, userTraits:[String : NSObject]?, locale:String?, signature:String?, writeOperation:String?)  {
+    public func identifyUser(userId:String?, userTraits:[String : NSObject]?, locale:String?, signature:String?, writeOperation:String?)  {
         do{
             try Refiner.instance.identifyUser(userId: userId,userTraits: userTraits,locale: locale ,signature: signature, writeOperation: writeOperation)
         } catch {
         }
     }
     
-    public func setUser(userId:String, userTraits:[String : NSObject]?, locale:String?, signature:String?)  {
+    public func setUser(userId:String?, userTraits:[String : NSObject]?, locale:String?, signature:String?)  {
         do{
             try Refiner.instance.setUser(userId: userId,userTraits: userTraits,locale: locale ,signature: signature)
         } catch {
@@ -104,6 +108,12 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
     }
     public func startSession() {
         Refiner.instance.startSession()
+    }
+    public func setLocale(locale: String) {
+        Refiner.instance.setLocale(locale)
+    }
+    public func setAnonymousId(anonymousId: String) {
+        Refiner.instance.setAnonymousId(anonymousId)
     }
     private func registerCallbacks() {
         Refiner.instance.onBeforeShow = { formId, formConfig in

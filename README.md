@@ -47,7 +47,7 @@ await Refiner.initialize(projectId: 'PROJECT_ID', debugMode: false);
 
 Call `Identify User` to create or update user traits in Refiner.
 
-The first parameter is the userId of your logged-in user and is the only mandatory parameter.
+The first parameter is the userId of your logged-in user. This parameter is optional — when omitted or set to `null`, the SDK operates in anonymous mode.
 
 The second parameter is an object of user traits. You can provide an empty object if you don't want
 to send any user traits to your Refiner account.
@@ -103,7 +103,27 @@ var userTraits = {
   'a_date': '2022-16-04 12:00:00'
 };
 
-awaitRefiner.setUser(userId: 'my-user-id',userTraits: userTraits,locale: 'LOCALE',signature: 'SIGNATURE');
+await Refiner.setUser(userId: 'my-user-id', userTraits: userTraits, locale: 'LOCALE', signature: 'SIGNATURE');
+```
+
+### Set Anonymous Id
+
+The `Set Anonymous Id` method allows you to track anonymous users without requiring a login or user identification. This is useful for tracking users who haven't signed up yet or for apps that don't require authentication.
+
+When not called, Refiner will automatically generate and maintain a unique anonymous identifier for the user. This identifier persists across app sessions.
+
+```dart
+await Refiner.setAnonymousId(anonymousId: 'ANONYMOUS_ID');
+```
+
+### Set Locale
+
+The `Set Locale` method allows you to set or update the locale for anonymous users after they have been identified. This is useful when you want to change the language preference for an anonymous user without re-identifying them.
+
+The expected format is a two letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code.
+
+```dart
+await Refiner.setLocale(locale: 'en');
 ```
 
 ### Track Event

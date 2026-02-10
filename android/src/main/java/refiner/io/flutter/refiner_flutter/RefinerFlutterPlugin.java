@@ -45,11 +45,13 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
                 setProject(args.get("projectId").toString());
                 break;
             case "identifyUser":
-                identifyUser(args.get("userId").toString(), (HashMap) args.get("userTraits"), (String) args.get("locale"), (String) args.get("signature"), (String) args.get("writeOperation"));
+                Object identifyUserIdObj = args.get("userId");
+                identifyUser(identifyUserIdObj != null ? identifyUserIdObj.toString() : null, (HashMap) args.get("userTraits"), (String) args.get("locale"), (String) args.get("signature"), (String) args.get("writeOperation"));
                 success(result);
                 break;
             case "setUser":
-                setUser(args.get("userId").toString(), (HashMap) args.get("userTraits"), (String) args.get("locale"), (String) args.get("signature"));
+                Object setUserIdObj = args.get("userId");
+                setUser(setUserIdObj != null ? setUserIdObj.toString() : null, (HashMap) args.get("userTraits"), (String) args.get("locale"), (String) args.get("signature"));
                 success(result);
                 break;
             case "resetUser":
@@ -86,6 +88,14 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
                 break;
             case "startSession":
                 startSession();
+                success(result);
+                break;
+            case "setLocale":
+                setLocale((String) args.get("locale"));
+                success(result);
+                break;
+            case "setAnonymousId":
+                setAnonymousId((String) args.get("anonymousId"));
                 success(result);
                 break;
             default:
@@ -126,11 +136,9 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
         for (Object e : userTraits.keySet()) {
             userTraitsMap.put(e.toString(), userTraits.get(e.toString()));
         }
-        if (userId != null) {
-            Refiner.INSTANCE.identifyUser(userId, userTraitsMap, locale, signature,
-                    writeOperation == null ? Refiner.WriteOperation.APPEND :
-                            Refiner.WriteOperation.valueOf(writeOperation));
-        }
+        Refiner.INSTANCE.identifyUser(userId, userTraitsMap, locale, signature,
+                writeOperation == null ? Refiner.WriteOperation.APPEND :
+                        Refiner.WriteOperation.valueOf(writeOperation));
     }
 
     public void setUser(String userId, HashMap userTraits, String locale, String signature) {
@@ -138,9 +146,7 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
         for (Object e : userTraits.keySet()) {
             userTraitsMap.put(e.toString(), userTraits.get(e.toString()));
         }
-        if (userId != null) {
-            Refiner.INSTANCE.setUser(userId, userTraitsMap, locale, signature);
-        }
+        Refiner.INSTANCE.setUser(userId, userTraitsMap, locale, signature);
     }
 
     public void resetUser() {
@@ -195,6 +201,18 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
 
     public void startSession() {
         Refiner.INSTANCE.startSession();
+    }
+
+    public void setLocale(String locale) {
+        if (locale != null) {
+            Refiner.INSTANCE.setLocale(locale);
+        }
+    }
+
+    public void setAnonymousId(String anonymousId) {
+        if (anonymousId != null) {
+            Refiner.INSTANCE.setAnonymousId(anonymousId);
+        }
     }
 
     private void registerCallbacks() {

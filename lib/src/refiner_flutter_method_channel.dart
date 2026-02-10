@@ -20,7 +20,7 @@ class MethodChannelRefinerFlutter extends RefinerFlutterPlatform {
   }
 
   @override
-  Future identifyUser(String userId, Map<String, dynamic> userTraits,
+  Future identifyUser(String? userId, Map<String, dynamic> userTraits,
       String? locale, String? signature, String? writeOperation) {
     return methodChannel.invokeMethod('identifyUser', {
       'userId': userId,
@@ -32,7 +32,7 @@ class MethodChannelRefinerFlutter extends RefinerFlutterPlatform {
   }
 
   @override
-  Future setUser(String userId, Map<String, dynamic> userTraits,
+  Future setUser(String? userId, Map<String, dynamic> userTraits,
       String? locale, String? signature) {
     return methodChannel.invokeMethod('setUser', {
       'userId': userId,
@@ -40,6 +40,17 @@ class MethodChannelRefinerFlutter extends RefinerFlutterPlatform {
       'locale': locale,
       'signature': signature
     });
+  }
+
+  @override
+  Future setLocale(String locale) {
+    return methodChannel.invokeMethod('setLocale', {'locale': locale});
+  }
+
+  @override
+  Future setAnonymousId(String anonymousId) {
+    return methodChannel
+        .invokeMethod('setAnonymousId', {'anonymousId': anonymousId});
   }
 
   @override

@@ -12,7 +12,7 @@ class Refiner {
   }
 
   static Future identifyUser(
-      {required String userId,
+      {String? userId,
       required Map<String, dynamic> userTraits,
       String? locale,
       String? signature,
@@ -22,12 +22,20 @@ class Refiner {
   }
 
   static Future setUser(
-      {required String userId,
+      {String? userId,
       required Map<String, dynamic> userTraits,
       String? locale,
       String? signature}) {
     return RefinerFlutterPlatform.instance
         .setUser(userId, userTraits, locale, signature);
+  }
+
+  static Future setLocale({required String locale}) {
+    return RefinerFlutterPlatform.instance.setLocale(locale);
+  }
+
+  static Future setAnonymousId({required String anonymousId}) {
+    return RefinerFlutterPlatform.instance.setAnonymousId(anonymousId);
   }
 
   static Future resetUser() {
