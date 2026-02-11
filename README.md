@@ -4,7 +4,7 @@ This repository hosts the official Refiner Flutter SDK. Installing the SDK allow
 
 Refiner is a user feedback survey tool designed specifically to launch [in-app surveys](https://refiner.io/features/in-app-surveys/) in web and mobile applications. Get spot-on insights from your users with perfectly timed microsurveys.
 
-With Refiner you can ask your users any question while they are using your react-native app. Measure [customer satisfaction (CSAT)](https://refiner.io/solutions/csat/), [Net Promoter Score (NPS)](https://refiner.io/solutions/nps/), or [customer effort score (CES)](https://refiner.io/solutions/ces/), research what to built next or profile your users. Refiner supports all survey use cases and comes packed with expert-built templates that will get you started quickly.
+With Refiner you can ask your users any question while they are using your Flutter app. Measure [customer satisfaction (CSAT)](https://refiner.io/solutions/csat/), [Net Promoter Score (NPS)](https://refiner.io/solutions/nps/), or [customer effort score (CES)](https://refiner.io/solutions/ces/), research what to built next or profile your users. Refiner supports all survey use cases and comes packed with expert-built templates that will get you started quickly.
 
 Refiner integrates into your marketing & sales tech stack seamlessly. Our integrations allow you to sync survey response data in real time to third party tools, such as your CRM, email marketing automation platform, your backend API or data warehouse.  
 
@@ -47,7 +47,7 @@ await Refiner.initialize(projectId: 'PROJECT_ID', debugMode: false);
 
 Call `Identify User` to create or update user traits in Refiner.
 
-The first parameter is the userId of your logged-in user. This parameter is optional — when omitted or set to `null`, the SDK operates in anonymous mode.
+The first parameter is the unique identifier of your logged-in user.
 
 The second parameter is an object of user traits. You can provide an empty object if you don't want
 to send any user traits to your Refiner account.
@@ -63,16 +63,15 @@ var userTraits = {
 await Refiner.identifyUser(userId: 'my-user-id', userTraits: userTraits);
 ```
 
-#### Advanced parameters
+#### Optional parameters
 
-The third parameter is for setting the `locale` of a user and is optional. The expected format is a
+The third parameter is for setting the `locale` of a user. The expected format is a
 two letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. When
 provided, the locale code is used for launching surveys for specific languages, as well as launching
-translated sureys. You can set the value to `null` if you are not using any language specific
+translated surveys. You can set the value to `null` if you are not using any language specific
 features.
 
-The fourth parameter is an
-optional [Identity Verification](https://refiner.io/docs/kb/settings/identity-verification/)
+The fourth parameter is an [Identity Verification](https://refiner.io/docs/kb/settings/identity-verification/)
 signature. We recommend to use a Identify Verification signature for increased security in a
 production environment. For development purposes, you can set this value to `null`.
 
@@ -108,7 +107,7 @@ await Refiner.setUser(userId: 'my-user-id', userTraits: userTraits, locale: 'LOC
 
 ### Set Anonymous Id
 
-The `Set Anonymous Id` method allows you to track anonymous users without requiring a login or user identification. This is useful for tracking users who haven't signed up yet or for apps that don't require authentication.
+The `Set Anonymous Id` method allows you to set a anonymous user ID for users that are not logged-in. This is useful for tracking users who haven't signed up yet or for apps that don't require authentication.
 
 When not called, Refiner will automatically generate and maintain a unique anonymous identifier for the user. This identifier persists across app sessions.
 
@@ -118,7 +117,7 @@ await Refiner.setAnonymousId(anonymousId: 'ANONYMOUS_ID');
 
 ### Set Locale
 
-The `Set Locale` method allows you to set or update the locale for anonymous users after they have been identified. This is useful when you want to change the language preference for an anonymous user without re-identifying them.
+The `Set Locale` method allows you to set or update the locale for a user.
 
 The expected format is a two letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code.
 
