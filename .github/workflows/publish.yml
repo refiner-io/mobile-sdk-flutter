@@ -1,0 +1,90 @@
+name: Publish to pub.dev
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  check-release:
+    runs-on: ubuntu-latest
+    outputs:
+      is_release: ${{ steps.check.outputs.is_release }}
+      version: ${{ steps.check.outputs.version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Check if this is a release merge
+        id: check
+        run: |
+          LAST_MSG=$(git log -1 --format=%s)
+          # Trigger on merges from release/* branches
+          if echo "$LAST_MSG" | grep -qE "Merge pull request.*release/"; then
+            VERSION=$(grep "^version:" pubspec.yaml | awk '{print $2}')
+            echo "is_release=true" >> $GITHUB_OUTPUT
+            echo "version=$VERSION" >> $GITHUB_OUTPUT
+            echo "Detected Flutter release: $VERSION"
+          else
+            echo "is_release=false" >> $GITHUB_OUTPUT
+            echo "Not a release merge, skipping pub.dev publish."
+          fi
+
+  publish:
+    needs: check-release
+    if: needs.check-release.outputs.is_release == 'true'
+    runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ needs.check-release.outputs.version }}
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "stable"
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Run tests
+        run: flutter test
+
+      - name: Publish to pub.dev
+        run: |
+          # Write pub.dev credentials from secret
+          mkdir -p ~/.config/dart
+          echo '${{ secrets.PUB_CREDENTIALS }}' > ~/.config/dart/pub-credentials.json
+          flutter pub publish --force
+        env:
+          PUB_CREDENTIALS: ${{ secrets.PUB_CREDENTIALS }}
+
+      - name: Generate GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      - name: Create git tag and GitHub Release
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          git tag "${VERSION}"
+          git push origin "${VERSION}"
+          gh release create "${VERSION}" \
+            --repo "${{ github.repository }}" \
+            --title "${VERSION}" \
+            --notes "Flutter SDK ${VERSION} published to pub.dev.
+
+          https://pub.dev/packages/refiner_flutter/versions/${VERSION}"
+
+          echo "## Published Flutter ${VERSION} to pub.dev" >> $GITHUB_STEP_SUMMARY
+          echo "https://pub.dev/packages/refiner_flutter/versions/${VERSION}" >> $GITHUB_STEP_SUMMARY
