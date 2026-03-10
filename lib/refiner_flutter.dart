@@ -42,6 +42,14 @@ class Refiner {
     return RefinerFlutterPlatform.instance.resetUser();
   }
 
+  static Future disableClient() {
+    return RefinerFlutterPlatform.instance.disableClient();
+  }
+
+  static Future enableClient() {
+    return RefinerFlutterPlatform.instance.enableClient();
+  }
+
   static Future trackEvent(String eventName) {
     return RefinerFlutterPlatform.instance.trackEvent(eventName);
   }

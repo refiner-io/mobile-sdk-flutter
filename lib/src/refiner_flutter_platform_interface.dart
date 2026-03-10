@@ -45,6 +45,14 @@ abstract class RefinerFlutterPlatform extends PlatformInterface {
     throw UnimplementedError('resetUser() has not been implemented.');
   }
 
+  Future disableClient() {
+    throw UnimplementedError('disableClient() has not been implemented.');
+  }
+
+  Future enableClient() {
+    throw UnimplementedError('enableClient() has not been implemented.');
+  }
+
   Future trackEvent(String eventName) {
     throw UnimplementedError('trackEvent() has not been implemented.');
   }

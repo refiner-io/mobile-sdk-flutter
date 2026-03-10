@@ -53,6 +53,10 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
                 self.ping()
             case "startSession":
                 self.startSession()
+            case "disableClient":
+                self.disableClient()
+            case "enableClient":
+                self.enableClient()
             default:
                 result(FlutterMethodNotImplemented)
             }
@@ -83,6 +87,12 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
     }
     public func resetUser() {
         Refiner.instance.resetUser()
+    }
+    public func disableClient() {
+        Refiner.instance.disableClient()
+    }
+    public func enableClient() {
+        Refiner.instance.enableClient()
     }
     public func trackEvent(eventName:String) {
         Refiner.instance.trackEvent(name: eventName)
