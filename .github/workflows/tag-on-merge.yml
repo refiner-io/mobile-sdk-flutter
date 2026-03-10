@@ -1,0 +1,39 @@
+name: Tag Release on Merge
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+jobs:
+  tag:
+    if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.title, 'Release ')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract version from PR title
+        id: version
+        run: |
+          VERSION="${{ github.event.pull_request.title }}"
+          VERSION="${VERSION#Release }"
+          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::Invalid version in PR title: $VERSION"
+            exit 1
+          fi
+          echo "VERSION=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Verify version matches pubspec.yaml
+        run: |
+          PUBSPEC_VERSION=$(grep '^version:' pubspec.yaml | sed 's/version: //' | tr -d '\r')
+          if [ "$PUBSPEC_VERSION" != "${{ steps.version.outputs.VERSION }}" ]; then
+            echo "::error::pubspec.yaml version=$PUBSPEC_VERSION does not match PR title version=${{ steps.version.outputs.VERSION }}"
+            exit 1
+          fi
+
+      - name: Create and push tag
+        run: |
+          git tag "${{ steps.version.outputs.VERSION }}"
+          git push origin "${{ steps.version.outputs.VERSION }}"
