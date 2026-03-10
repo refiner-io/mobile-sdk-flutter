@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:refiner_flutter/refiner_flutter.dart';
