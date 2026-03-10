@@ -58,6 +58,14 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
                 resetUser();
                 success(result);
                 break;
+            case "disableClient":
+                disableClient();
+                success(result);
+                break;
+            case "enableClient":
+                enableClient();
+                success(result);
+                break;
             case "trackEvent":
                 trackEvent(args.get("eventName").toString());
                 success(result);
@@ -151,6 +159,14 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
 
     public void resetUser() {
         Refiner.INSTANCE.resetUser();
+    }
+
+    public void disableClient() {
+        Refiner.INSTANCE.disableClient();
+    }
+
+    public void enableClient() {
+        Refiner.INSTANCE.enableClient();
     }
 
 

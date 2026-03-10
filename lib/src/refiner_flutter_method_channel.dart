@@ -59,6 +59,16 @@ class MethodChannelRefinerFlutter extends RefinerFlutterPlatform {
   }
 
   @override
+  Future disableClient() {
+    return methodChannel.invokeMethod('disableClient');
+  }
+
+  @override
+  Future enableClient() {
+    return methodChannel.invokeMethod('enableClient');
+  }
+
+  @override
   Future trackEvent(String eventName) {
     return methodChannel.invokeMethod('trackEvent', {'eventName': eventName});
   }
