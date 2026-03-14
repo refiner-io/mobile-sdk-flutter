@@ -1,6 +1,6 @@
 PODS:
   - Flutter (1.0.0)
-  - refiner_flutter (1.7.0):
+  - refiner_flutter (1.8.0):
     - Flutter
     - RefinerSDK (~> 1.7.1)
   - RefinerSDK (1.7.1)
@@ -21,7 +21,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
-  refiner_flutter: b2e81f684a708e6973524a68b0deec6b75ee6055
+  refiner_flutter: 329bc87ca2bd3b0442fb87829af54141366821df
   RefinerSDK: efc3a318824fc21344b9c5aeb0d4bc365a3b1164
 
 PODFILE CHECKSUM: d55f5676cf9e97c3ce7eac0f82d01863a978e840
