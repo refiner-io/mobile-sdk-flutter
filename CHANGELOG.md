@@ -1,3 +1,9 @@
+## 1.9.0
+
+* Added Swift Package Manager support for iOS while keeping CocoaPods compatibility
+* Raised minimum Flutter SDK to 3.24.0 (required for SPM)
+* Reorganized iOS sources under `ios/refiner_flutter/Sources/refiner_flutter/`
+
 ## 1.7.0
 
 * Added anonymous mode support - userId is now optional in identifyUser and setUser
