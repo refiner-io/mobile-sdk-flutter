@@ -12,6 +12,13 @@ Please find more information about how Refiner mobile app survey work in our [do
 
 ## 1) Installation
 
+### Requirements
+
+- Flutter `>=3.24.0`
+- Dart `>=3.5.0`
+- iOS 12.0 or higher
+- Android minSdk 21 or higher
+
 - To use this plugin, add refiner_flutter as a dependency in your pubspec.yaml file.
 
   ![Pub Version (including pre-releases)](https://img.shields.io/pub/v/refiner_flutter)
@@ -23,8 +30,31 @@ dependencies:
 
 ### iOS
 
-- **Swift Package Manager (Flutter 3.24+):** No extra step required — when SPM is enabled (`flutter config --enable-swift-package-manager`), Flutter automatically resolves `refiner_flutter` and its `RefinerSDK` dependency.
-- **CocoaPods (legacy):** Run `pod install` in your `ios` directory.
+The iOS plugin supports both Swift Package Manager and CocoaPods. Pick whichever your app already
+uses — you do not need both.
+
+#### Swift Package Manager
+
+Swift Package Manager requires Flutter 3.24 or higher. If it is not already enabled in your Flutter
+installation, enable it once:
+
+```bash
+flutter config --enable-swift-package-manager
+```
+
+No further steps are needed. Flutter resolves `refiner_flutter` and its `RefinerSDK` dependency
+automatically on the next build — there is no `pod install` to run.
+
+#### CocoaPods
+
+If Swift Package Manager is not enabled, Flutter falls back to CocoaPods. Run the following in your
+`ios` directory:
+
+```bash
+pod install
+```
+
+Existing CocoaPods projects keep working unchanged, so no migration is required.
 
 ## 2) Usage
 
