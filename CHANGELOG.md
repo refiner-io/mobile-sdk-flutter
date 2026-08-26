@@ -1,4 +1,4 @@
-## Unreleased
+## 1.9.0
 
 * Added Swift Package Manager support for iOS, while keeping CocoaPods compatibility
 * Reorganized iOS sources under `ios/refiner_flutter/Sources/refiner_flutter/`
