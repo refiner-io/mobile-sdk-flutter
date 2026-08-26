@@ -18,7 +18,7 @@ Official Flutter wrapper for the Refiner Mobile SDK
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'Refiner' => 'contact@refiner.io' }
   s.source           = { :path => '.' }
-  s.source_files = 'Classes/**/*'
+  s.source_files = 'refiner_flutter/Sources/refiner_flutter/**/*'
   s.dependency 'Flutter'
   s.dependency 'RefinerSDK', "~> 1.7.1"
   s.platform = :ios, '12.0'

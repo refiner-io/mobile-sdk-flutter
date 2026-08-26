@@ -23,7 +23,8 @@ dependencies:
 
 ### iOS
 
-- Run command `pod install` in your ios directory
+- **Swift Package Manager (Flutter 3.24+):** No extra step required — when SPM is enabled (`flutter config --enable-swift-package-manager`), Flutter automatically resolves `refiner_flutter` and its `RefinerSDK` dependency.
+- **CocoaPods (legacy):** Run `pod install` in your `ios` directory.
 
 ## 2) Usage
 

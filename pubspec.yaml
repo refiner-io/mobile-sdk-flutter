@@ -7,8 +7,8 @@ issue_tracker: https://github.com/refiner-io/mobile-sdk-flutter/issues
 
 
 environment:
-  sdk: '>=2.19.6 <4.0.0'
-  flutter: ">=2.5.0"
+  sdk: '>=3.5.0 <4.0.0'
+  flutter: ">=3.24.0"
 
 dependencies:
   flutter:
