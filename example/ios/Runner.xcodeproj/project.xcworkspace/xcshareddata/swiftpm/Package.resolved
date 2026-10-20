@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "mobile-sdk-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/refiner-io/mobile-sdk-ios.git",
+      "state" : {
+        "revision" : "e8549374bc6f0c45a76200992cc472cf6ffa8e1a",
+        "version" : "1.7.2"
+      }
+    }
+  ],
+  "version" : 2
+}

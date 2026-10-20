@@ -19,4 +19,6 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter:
+  config:
+    enable-swift-package-manager: true
   uses-material-design: true
