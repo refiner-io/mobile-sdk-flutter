@@ -16,30 +16,58 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
         if let args = call.arguments as? [String : NSObject]{
             switch call.method {
             case "initialize":
-                self.initialize(projectId: args["projectId"] as! String, debugMode: args["debugMode"] as! Bool)
+                guard let projectId = args["projectId"] as? String,
+                      let debugMode = args["debugMode"] as? Bool else {
+                    return invalidArgument(result, "projectId, debugMode")
+                }
+                self.initialize(projectId: projectId, debugMode: debugMode)
             case "setProject":
-                self.setProject(projectId: args["projectId"] as! String)
+                guard let projectId = args["projectId"] as? String else {
+                    return invalidArgument(result, "projectId")
+                }
+                self.setProject(projectId: projectId)
             case "identifyUser":
-                self.identifyUser(userId: args["userId"] as? String, userTraits: args["userTraits"] as! [String : NSObject]?, locale: args["locale"] as? String, signature: args["signature"] as? String, writeOperation: args["writeOperation"] as? String)
+                self.identifyUser(userId: args["userId"] as? String, userTraits: args["userTraits"] as? [String : NSObject], locale: args["locale"] as? String, signature: args["signature"] as? String, writeOperation: args["writeOperation"] as? String)
             case "setUser":
-                self.setUser(userId: args["userId"] as? String, userTraits: args["userTraits"] as! [String : NSObject]?, locale: args["locale"] as? String, signature: args["signature"] as? String)
+                self.setUser(userId: args["userId"] as? String, userTraits: args["userTraits"] as? [String : NSObject], locale: args["locale"] as? String, signature: args["signature"] as? String)
             case "trackEvent":
-                self.trackEvent(eventName: args["eventName"] as! String)
+                guard let eventName = args["eventName"] as? String else {
+                    return invalidArgument(result, "eventName")
+                }
+                self.trackEvent(eventName: eventName)
             case "trackScreen":
-                self.trackScreen(screenName: args["screenName"] as! String)
+                guard let screenName = args["screenName"] as? String else {
+                    return invalidArgument(result, "screenName")
+                }
+                self.trackScreen(screenName: screenName)
                 
             case "showForm":
-                self.showForm(formUuid: args["formUuid"] as! String, force: args["force"] as! Bool)
+                guard let formUuid = args["formUuid"] as? String else {
+                    return invalidArgument(result, "formUuid")
+                }
+                self.showForm(formUuid: formUuid, force: args["force"] as? Bool ?? false)
             case "dismissForm":
-                self.dismissForm(formUuid: args["formUuid"] as! String)
+                guard let formUuid = args["formUuid"] as? String else {
+                    return invalidArgument(result, "formUuid")
+                }
+                self.dismissForm(formUuid: formUuid)
             case "closeForm":
-                self.closeForm(formUuid: args["formUuid"] as! String)
+                guard let formUuid = args["formUuid"] as? String else {
+                    return invalidArgument(result, "formUuid")
+                }
+                self.closeForm(formUuid: formUuid)
             case "addToResponse":
                 self.addToResponse(contextualData: args)
             case "setLocale":
-                self.setLocale(locale: args["locale"] as! String)
+                guard let locale = args["locale"] as? String else {
+                    return invalidArgument(result, "locale")
+                }
+                self.setLocale(locale: locale)
             case "setAnonymousId":
-                self.setAnonymousId(anonymousId: args["anonymousId"] as! String)
+                guard let anonymousId = args["anonymousId"] as? String else {
+                    return invalidArgument(result, "anonymousId")
+                }
+                self.setAnonymousId(anonymousId: anonymousId)
             default:
                 result(FlutterMethodNotImplemented)
             }
@@ -61,6 +89,10 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
                 result(FlutterMethodNotImplemented)
             }
         }
+    }
+    
+    private func invalidArgument(_ result: FlutterResult, _ names: String) {
+        result(FlutterError(code: "INVALID_ARGUMENT", message: "Missing or invalid argument: \(names)", details: nil))
     }
     
     public func initialize(projectId:String, debugMode:Bool) {
