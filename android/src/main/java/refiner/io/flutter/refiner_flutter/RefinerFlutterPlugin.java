@@ -34,15 +34,25 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
 
     @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
-        HashMap<String, Object> args = (HashMap<String, Object>) call.arguments;
+        HashMap<String, Object> args = call.arguments instanceof HashMap
+                ? (HashMap<String, Object>) call.arguments
+                : new HashMap<>();
 
         switch (call.method) {
             case "initialize":
-                initialize(args.get("projectId").toString(), (boolean) args.get("debugMode"));
+                if (!(args.get("projectId") instanceof String) || !(args.get("debugMode") instanceof Boolean)) {
+                    invalidArgument(result, "projectId, debugMode");
+                    break;
+                }
+                initialize((String) args.get("projectId"), (Boolean) args.get("debugMode"));
                 success(result);
                 break;
             case "setProject":
-                setProject(args.get("projectId").toString());
+                if (!(args.get("projectId") instanceof String)) {
+                    invalidArgument(result, "projectId");
+                    break;
+                }
+                setProject((String) args.get("projectId"));
                 break;
             case "identifyUser":
                 Object identifyUserIdObj = args.get("userId");
@@ -67,11 +77,19 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
                 success(result);
                 break;
             case "trackEvent":
-                trackEvent(args.get("eventName").toString());
+                if (!(args.get("eventName") instanceof String)) {
+                    invalidArgument(result, "eventName");
+                    break;
+                }
+                trackEvent((String) args.get("eventName"));
                 success(result);
                 break;
             case "trackScreen":
-                trackScreen(args.get("screenName").toString());
+                if (!(args.get("screenName") instanceof String)) {
+                    invalidArgument(result, "screenName");
+                    break;
+                }
+                trackScreen((String) args.get("screenName"));
                 success(result);
                 break;
             case "ping":
@@ -79,15 +97,27 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
                 success(result);
                 break;
             case "showForm":
-                showForm(args.get("formUuid").toString(), (boolean) args.get("force"));
+                if (!(args.get("formUuid") instanceof String)) {
+                    invalidArgument(result, "formUuid");
+                    break;
+                }
+                showForm((String) args.get("formUuid"), Boolean.TRUE.equals(args.get("force")));
                 success(result);
                 break;
             case "dismissForm":
-                dismissForm(args.get("formUuid").toString());
+                if (!(args.get("formUuid") instanceof String)) {
+                    invalidArgument(result, "formUuid");
+                    break;
+                }
+                dismissForm((String) args.get("formUuid"));
                 success(result);
                 break;
             case "closeForm":
-                closeForm(args.get("formUuid").toString());
+                if (!(args.get("formUuid") instanceof String)) {
+                    invalidArgument(result, "formUuid");
+                    break;
+                }
+                closeForm((String) args.get("formUuid"));
                 success(result);
                 break;
             case "addToResponse":
@@ -110,6 +140,15 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
                 result.notImplemented();
                 break;
         }
+    }
+
+    private void invalidArgument(Result result, String names) {
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                result.error("INVALID_ARGUMENT", "Missing or invalid argument: " + names, null);
+            }
+        });
     }
 
     private void success(Result result) {
@@ -141,8 +180,10 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
 
     public void identifyUser(String userId, HashMap userTraits, String locale, String signature, String writeOperation) {
         LinkedHashMap<String, Object> userTraitsMap = new LinkedHashMap<>();
-        for (Object e : userTraits.keySet()) {
-            userTraitsMap.put(e.toString(), userTraits.get(e.toString()));
+        if (userTraits != null) {
+            for (Object e : userTraits.keySet()) {
+                userTraitsMap.put(e.toString(), userTraits.get(e.toString()));
+            }
         }
         Refiner.INSTANCE.identifyUser(userId, userTraitsMap, locale, signature,
                 writeOperation == null ? Refiner.WriteOperation.APPEND :
@@ -151,8 +192,10 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
 
     public void setUser(String userId, HashMap userTraits, String locale, String signature) {
         LinkedHashMap<String, Object> userTraitsMap = new LinkedHashMap<>();
-        for (Object e : userTraits.keySet()) {
-            userTraitsMap.put(e.toString(), userTraits.get(e.toString()));
+        if (userTraits != null) {
+            for (Object e : userTraits.keySet()) {
+                userTraitsMap.put(e.toString(), userTraits.get(e.toString()));
+            }
         }
         Refiner.INSTANCE.setUser(userId, userTraitsMap, locale, signature);
     }
