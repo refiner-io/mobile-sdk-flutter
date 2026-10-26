@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
     name: "refiner_flutter",
     platforms: [
-        .iOS("12.0")
+        .iOS("13.0")
     ],
     products: [
         .library(name: "refiner-flutter", type: .static, targets: ["refiner_flutter"])

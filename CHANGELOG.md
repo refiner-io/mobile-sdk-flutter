@@ -1,3 +1,9 @@
+## Unreleased
+
+* Raised the iOS deployment target to 13.0 (required by native iOS SDK 2.x)
+* The native `RefinerSDK` pod is no longer published to the CocoaPods trunk; CocoaPods users add a `:git` source for `RefinerSDK` to their Podfile (see README). Swift Package Manager is recommended
+* The automated native SDK update now also bumps the Swift Package Manager dependency range (previously only the podspec was updated)
+
 ## 1.9.0
 
 * Added Swift Package Manager support for iOS, while keeping CocoaPods compatibility
