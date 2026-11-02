@@ -42,9 +42,20 @@ jobs:
       - name: Publish to pub.dev
         run: dart pub publish --force
 
-      - name: Create GitHub Release
+      # Public release notes are reviewed and published by hand: create a DRAFT whose body is
+      # the CHANGELOG section for this version (never an auto-generated commit list).
+      - name: Extract release notes from CHANGELOG
+        env:
+          VERSION: ${{ steps.version.outputs.VERSION }}
+        run: |
+          awk -v v="$VERSION" '$0 ~ "^## " v "$" {f=1; next} f && /^## / {exit} f' CHANGELOG.md \
+            | sed -e :a -e '/^\n*$/{$d;N;ba' -e '}' > "$RUNNER_TEMP/release-notes.md"
+          [ -s "$RUNNER_TEMP/release-notes.md" ] || echo "refiner_flutter $VERSION" > "$RUNNER_TEMP/release-notes.md"
+
+      - name: Create draft GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.version.outputs.VERSION }}
           name: ${{ steps.version.outputs.VERSION }}
-          generate_release_notes: true
+          body_path: ${{ runner.temp }}/release-notes.md
+          draft: true
