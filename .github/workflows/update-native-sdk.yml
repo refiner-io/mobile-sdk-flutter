@@ -44,6 +44,11 @@ jobs:
         if: steps.info.outputs.PLATFORM == 'ios'
         run: |
           sed -i "s/s\.dependency 'RefinerSDK', \"~> [^\"]*\"/s.dependency 'RefinerSDK', \"~> ${{ steps.info.outputs.VERSION }}\"/" ios/refiner_flutter.podspec
+          # Keep the Swift Package Manager range in step with the podspec.
+          sed -i "s#\.package(url: \"https://github.com/refiner-io/mobile-sdk-ios.git\", from: \"[^\"]*\")#.package(url: \"https://github.com/refiner-io/mobile-sdk-ios.git\", from: \"${{ steps.info.outputs.VERSION }}\")#" ios/refiner_flutter/Package.swift
+          # Drop the example app's SPM pins so the next build re-resolves to the new version.
+          rm -f example/ios/Runner.xcworkspace/xcshareddata/swiftpm/Package.resolved \
+                example/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
