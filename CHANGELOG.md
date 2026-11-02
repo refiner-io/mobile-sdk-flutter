@@ -1,3 +1,9 @@
+## 2.0.0
+
+* Updated the native Refiner SDKs to 2.0.0 (iOS and Android)
+* iOS deployment target raised to 13.0
+* CocoaPods: the native `RefinerSDK` pod is no longer distributed through the CocoaPods trunk. Add `pod 'RefinerSDK', :git => 'https://github.com/refiner-io/mobile-sdk-ios.git', :tag => '2.0.0'` to your Podfile, or use Swift Package Manager (recommended)
+
 ## 1.9.0
 
 * Added Swift Package Manager support for iOS, while keeping CocoaPods compatibility

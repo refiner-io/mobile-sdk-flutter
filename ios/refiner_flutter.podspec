@@ -20,8 +20,8 @@ Official Flutter wrapper for the Refiner Mobile SDK
   s.source           = { :path => '.' }
   s.source_files = 'refiner_flutter/Sources/refiner_flutter/**/*'
   s.dependency 'Flutter'
-  s.dependency 'RefinerSDK', "~> 1.7.3"
-  s.platform = :ios, '12.0'
+  s.dependency 'RefinerSDK', "~> 2.0.0"
+  s.platform = :ios, '13.0'
 
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
