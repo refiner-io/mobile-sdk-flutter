@@ -10,7 +10,7 @@ let package = Package(
         .library(name: "refiner-flutter", type: .static, targets: ["refiner_flutter"])
     ],
     dependencies: [
-        .package(url: "https://github.com/refiner-io/mobile-sdk-ios.git", from: "2.0.0")
+        .package(url: "https://github.com/refiner-io/mobile-sdk-ios.git", from: "2.1.0")
     ],
     targets: [
         .target(
