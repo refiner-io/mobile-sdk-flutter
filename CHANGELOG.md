@@ -1,3 +1,10 @@
+## 2.1.0
+
+* Added `setCountry` to set the user's country, sent together with the locale
+* Added `setColorScheme` (`RefinerColorScheme.auto` / `.light` / `.dark`) to control the survey color scheme; `auto` follows the device or app appearance
+* Updated the native Refiner SDKs (iOS 2.1.0, Android 2.1.1)
+* Fixed: Android apps could not compile against the plugin's native SDK in 2.0.0
+
 ## 2.0.0
 
 * Updated the native Refiner SDKs to 2.0.0 (iOS and Android)
