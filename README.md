@@ -166,6 +166,22 @@ The expected format is a two letter [ISO 639-1](https://en.wikipedia.org/wiki/Li
 await Refiner.setLocale(locale: 'en');
 ```
 
+### Set Country
+
+The `Set Country` method sets the country for a user. It is sent together with the locale.
+
+```dart
+await Refiner.setCountry(country: 'US');
+```
+
+### Set Color Scheme
+
+Surveys follow the device's light/dark appearance by default (`RefinerColorScheme.auto`). Use `Set Color Scheme` to force a scheme, for example when your app has its own theme switch:
+
+```dart
+await Refiner.setColorScheme(colorScheme: RefinerColorScheme.dark);
+```
+
 ### Track Event
 
 `Track Event` lets you track user events. Tracked events can be used to create user segments and

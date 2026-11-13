@@ -63,6 +63,16 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
                     return invalidArgument(result, "locale")
                 }
                 self.setLocale(locale: locale)
+            case "setCountry":
+                guard let country = args["country"] as? String else {
+                    return invalidArgument(result, "country")
+                }
+                self.setCountry(country: country)
+            case "setColorScheme":
+                guard let colorScheme = args["colorScheme"] as? String else {
+                    return invalidArgument(result, "colorScheme")
+                }
+                self.setColorScheme(colorScheme: colorScheme)
             case "setAnonymousId":
                 guard let anonymousId = args["anonymousId"] as? String else {
                     return invalidArgument(result, "anonymousId")
@@ -153,6 +163,12 @@ public class RefinerFlutterPlugin: NSObject, FlutterPlugin {
     }
     public func setLocale(locale: String) {
         Refiner.instance.setLocale(locale)
+    }
+    public func setCountry(country: String) {
+        Refiner.instance.setCountry(country)
+    }
+    public func setColorScheme(colorScheme: String) {
+        Refiner.instance.setColorScheme(colorScheme)
     }
     public func setAnonymousId(anonymousId: String) {
         Refiner.instance.setAnonymousId(anonymousId)

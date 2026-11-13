@@ -1,5 +1,6 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'refiner_flutter_method_channel.dart';
+import 'refiner_color_scheme.dart';
 
 abstract class RefinerFlutterPlatform extends PlatformInterface {
   RefinerFlutterPlatform() : super(token: _token);
@@ -35,6 +36,14 @@ abstract class RefinerFlutterPlatform extends PlatformInterface {
 
   Future setLocale(String locale) {
     throw UnimplementedError('setLocale() has not been implemented.');
+  }
+
+  Future setCountry(String country) {
+    throw UnimplementedError('setCountry() has not been implemented.');
+  }
+
+  Future setColorScheme(RefinerColorScheme colorScheme) {
+    throw UnimplementedError('setColorScheme() has not been implemented.');
   }
 
   Future setAnonymousId(String anonymousId) {

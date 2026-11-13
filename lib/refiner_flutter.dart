@@ -1,4 +1,7 @@
+import 'src/refiner_color_scheme.dart';
 import 'src/refiner_flutter_platform_interface.dart';
+
+export 'src/refiner_color_scheme.dart';
 
 class Refiner {
   static Future initialize(
@@ -32,6 +35,17 @@ class Refiner {
 
   static Future setLocale({required String locale}) {
     return RefinerFlutterPlatform.instance.setLocale(locale);
+  }
+
+  /// Sets the country for the current user. It is sent together with the locale.
+  static Future setCountry({required String country}) {
+    return RefinerFlutterPlatform.instance.setCountry(country);
+  }
+
+  /// Sets the survey color scheme. [RefinerColorScheme.auto] (default) follows the
+  /// device/app appearance; [RefinerColorScheme.light] / [RefinerColorScheme.dark] force one.
+  static Future setColorScheme({required RefinerColorScheme colorScheme}) {
+    return RefinerFlutterPlatform.instance.setColorScheme(colorScheme);
   }
 
   static Future setAnonymousId({required String anonymousId}) {
