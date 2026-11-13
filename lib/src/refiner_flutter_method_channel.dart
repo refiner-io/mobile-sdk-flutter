@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'refiner_flutter_platform_interface.dart';
+import 'refiner_color_scheme.dart';
 
 class MethodChannelRefinerFlutter extends RefinerFlutterPlatform {
   @visibleForTesting
@@ -45,6 +46,17 @@ class MethodChannelRefinerFlutter extends RefinerFlutterPlatform {
   @override
   Future setLocale(String locale) {
     return methodChannel.invokeMethod('setLocale', {'locale': locale});
+  }
+
+  @override
+  Future setCountry(String country) {
+    return methodChannel.invokeMethod('setCountry', {'country': country});
+  }
+
+  @override
+  Future setColorScheme(RefinerColorScheme colorScheme) {
+    return methodChannel
+        .invokeMethod('setColorScheme', {'colorScheme': colorScheme.name});
   }
 
   @override
