@@ -132,6 +132,14 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
                 setLocale((String) args.get("locale"));
                 success(result);
                 break;
+            case "setCountry":
+                setCountry((String) args.get("country"));
+                success(result);
+                break;
+            case "setColorScheme":
+                setColorScheme((String) args.get("colorScheme"));
+                success(result);
+                break;
             case "setAnonymousId":
                 setAnonymousId((String) args.get("anonymousId"));
                 success(result);
@@ -265,6 +273,18 @@ public class RefinerFlutterPlugin implements FlutterPlugin, MethodCallHandler {
     public void setLocale(String locale) {
         if (locale != null) {
             Refiner.INSTANCE.setLocale(locale);
+        }
+    }
+
+    public void setCountry(String country) {
+        if (country != null) {
+            Refiner.INSTANCE.setCountry(country);
+        }
+    }
+
+    public void setColorScheme(String colorScheme) {
+        if (colorScheme != null) {
+            Refiner.INSTANCE.setColorScheme(colorScheme);
         }
     }
 
