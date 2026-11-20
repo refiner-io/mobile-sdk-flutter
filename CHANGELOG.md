@@ -1,3 +1,9 @@
+## 2.2.0
+
+* Updated the native Refiner SDKs (iOS 2.2.0, Android 2.1.2)
+* iOS: surveys now fade in and out instead of sliding up from the bottom
+* iOS: no extra toolbar row above the keyboard when answering a text question
+
 ## 2.1.0
 
 * Added `setCountry` to set the user's country, sent together with the locale
